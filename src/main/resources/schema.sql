@@ -1,0 +1,76 @@
+CREATE TABLE IF NOT EXISTS `USER`
+(
+    `id`               bigint NOT NULL AUTO_INCREMENT,
+    `cin_number`       varchar(255) DEFAULT NULL,
+    `company_name`     varchar(255) DEFAULT NULL,
+    `email`            varchar(255) DEFAULT NULL,
+    `mobile`           bigint       DEFAULT NULL,
+    `password`         varchar(255) DEFAULT NULL,
+    `website`          varchar(255) DEFAULT NULL,
+    `account_verified` bit(1) NOT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `UK_ob8kqyqqgmefl0aco34akdtpe` (`email`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 11
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_0900_ai_ci;
+
+CREATE TABLE IF NOT EXISTS `PRINCIPAL_GROUP`
+(
+    `id`   bigint       NOT NULL AUTO_INCREMENT,
+    `code` varchar(255) NOT NULL,
+    `name` varchar(255) DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `UK_mivgwei5gryhbnt5fsec4u3se` (`code`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 5
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_0900_ai_ci;
+
+CREATE TABLE IF NOT EXISTS `JOB_OFFER`
+(
+    `id`                  bigint NOT NULL AUTO_INCREMENT,
+    `company`             varchar(255) DEFAULT NULL,
+    `ctc`                 varchar(255) DEFAULT NULL,
+    `job_title`           varchar(255) DEFAULT NULL,
+    `joining_date`        varchar(255) DEFAULT NULL,
+    `name`                varchar(255) DEFAULT NULL,
+    `offer_received_date` varchar(255) DEFAULT NULL,
+    `pan_number`          varchar(255) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 6
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_0900_ai_ci;
+
+CREATE TABLE IF NOT EXISTS `SECURE_TOKEN`
+(
+    `id`        bigint      NOT NULL AUTO_INCREMENT,
+    `expire_at` datetime(6) NOT NULL,
+    `timestamp` datetime(6)  DEFAULT NULL,
+    `token`     varchar(255) DEFAULT NULL,
+    `user_id`   bigint       DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `UK_1vnojtqwxyii8kinnsohdknhw` (`token`),
+    KEY `FKdv1lktun3k4xuye9gb83xkv61` (`user_id`),
+    CONSTRAINT `FKdv1lktun3k4xuye9gb83xkv61` FOREIGN KEY (`user_id`) REFERENCES `USER` (`id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 20
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_0900_ai_ci;
+
+CREATE TABLE IF NOT EXISTS `USER_GROUP`
+(
+    `user_id`  bigint NOT NULL,
+    `group_id` bigint NOT NULL,
+    PRIMARY KEY (`user_id`, `group_id`),
+    KEY `FKkeyy6lj4ooau5pi73ftawhvsa` (`group_id`),
+    CONSTRAINT `FK1c1dsw3q36679vaiqwvtv36a6` FOREIGN KEY (`user_id`) REFERENCES `USER` (`id`),
+    CONSTRAINT `FKkeyy6lj4ooau5pi73ftawhvsa` FOREIGN KEY (`group_id`) REFERENCES `PRINCIPAL_GROUP` (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_0900_ai_ci;
+
+
+
+
