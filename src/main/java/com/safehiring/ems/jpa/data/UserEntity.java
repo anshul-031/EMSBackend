@@ -38,11 +38,11 @@ public class UserEntity {
     @Column(unique = true)
     private String email;
     private String password;
-    private String companyName;
-    private String cinNumber;
+    private String orgName;
     private String website;
     private Long mobile;
     private boolean accountVerified;
+    private String referredBy;
 
     @OneToMany(mappedBy = "user")
     @ToString.Exclude

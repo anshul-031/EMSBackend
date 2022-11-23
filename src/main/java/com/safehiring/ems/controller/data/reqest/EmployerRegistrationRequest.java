@@ -22,17 +22,19 @@ public class EmployerRegistrationRequest {
     @NotEmpty(message = "{employer.registration.password}")
     private String password;
 
-    @NotEmpty(message = "{employer.registration.companyName}")
-    private String companyName;
+    @NotEmpty(message = "{employer.registration.orgName}")
+    private String orgName;
 
-    @NotEmpty(message = "{employer.registration.cinNumber}")
-    private String cinNumber;
+    @NotEmpty(message = "{employer.registration.country}")
+    private String country;
 
     @NotEmpty(message = "{employer.registration.website}")
     private String website;
 
     @NotNull(message = "{employer.registration.mobile}")
     private Long mobile;
+
+    private String referredBy;
 
     private String group;
 }

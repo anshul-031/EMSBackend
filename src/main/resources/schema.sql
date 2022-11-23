@@ -1,13 +1,13 @@
 CREATE TABLE IF NOT EXISTS `USER`
 (
     `id`               bigint NOT NULL AUTO_INCREMENT,
-    `cin_number`       varchar(255) DEFAULT NULL,
-    `company_name`     varchar(255) DEFAULT NULL,
+    `org_name`         varchar(255) DEFAULT NULL,
     `email`            varchar(255) DEFAULT NULL,
     `mobile`           bigint       DEFAULT NULL,
     `password`         varchar(255) DEFAULT NULL,
     `website`          varchar(255) DEFAULT NULL,
     `account_verified` bit(1) NOT NULL,
+    `referred_by`          varchar(255) DEFAULT NULL,
     PRIMARY KEY (`id`),
     UNIQUE KEY `UK_ob8kqyqqgmefl0aco34akdtpe` (`email`)
 ) ENGINE = InnoDB
