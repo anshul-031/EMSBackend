@@ -1,12 +1,10 @@
 package com.safehiring.ems.controller;
 
 
-import com.safehiring.ems.controller.data.reqest.JobOfferRequest;
-import com.safehiring.ems.controller.data.response.JobOfferResponse;
-import com.safehiring.ems.exceptio.InvalidJobOfferException;
-import com.safehiring.ems.service.JobOfferService;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.util.List;
+import com.safehiring.ems.controller.data.reqest.JobOfferRequest;
+import com.safehiring.ems.controller.data.response.JobOfferResponse;
+import com.safehiring.ems.exceptio.InvalidJobOfferException;
+import com.safehiring.ems.service.JobOfferService;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 @RestController
 @RequestMapping("/v1/api/offer")
@@ -32,32 +34,32 @@ public class JobOfferController {
     @GetMapping("/view/all")
     public List<JobOfferResponse> getAllJobOffers() throws InvalidJobOfferException {
 
-        return jobOfferService.getAllJobOffers();
+        return this.jobOfferService.getAllJobOffers();
     }
 
-    @GetMapping("/view/job/{panNumber}")
-    public List<JobOfferResponse> getAllJobOffers(@PathVariable String panNumber) throws InvalidJobOfferException {
+    @GetMapping("/view/job/{tin}")
+    public List<JobOfferResponse> getAllJobOffers(@PathVariable final String tin) throws InvalidJobOfferException {
 
-        return jobOfferService.getAllJobsByPanNumber(panNumber);
+        return this.jobOfferService.getAllJobsByTin(tin);
     }
 
     @PostMapping("/opt/job")
-    public JobOfferResponse createJobOffers(@RequestBody @Valid JobOfferRequest jobOfferRequest) {
+    public JobOfferResponse createJobOffers(@RequestBody @Valid final JobOfferRequest jobOfferRequest) {
 
-        return jobOfferService.saveJobOffer(jobOfferRequest);
+        return this.jobOfferService.saveJobOffer(jobOfferRequest);
 
     }
 
     @PutMapping("/opt/job")
-    public JobOfferResponse updateJobOffers(@RequestBody @Valid JobOfferRequest jobOfferRequest) {
+    public JobOfferResponse updateJobOffers(@RequestBody @Valid final JobOfferRequest jobOfferRequest) {
 
-        return jobOfferService.updateJobOffer(jobOfferRequest);
+        return this.jobOfferService.updateJobOffer(jobOfferRequest);
 
     }
 
     @DeleteMapping("/opt/job/{jobId}")
-    public String deleteJobOffers(@PathVariable Long jobId) {
-        jobOfferService.deleteJobOffer(jobId);
+    public String deleteJobOffers(@PathVariable final Long jobId) {
+        this.jobOfferService.deleteJobOffer(jobId);
         return "Job deleted successfully";
     }
 }

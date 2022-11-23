@@ -1,9 +1,10 @@
 package com.safehiring.ems.service;
 
+import java.util.List;
+
 import com.safehiring.ems.controller.data.reqest.JobOfferRequest;
 import com.safehiring.ems.controller.data.response.JobOfferResponse;
 import com.safehiring.ems.exceptio.InvalidJobOfferException;
-import java.util.List;
 
 
 public interface JobOfferService {
@@ -17,5 +18,5 @@ public interface JobOfferService {
 
     void deleteJobOffer(Long jobId);
 
-    List<JobOfferResponse> getAllJobsByPanNumber(String panNumber) throws InvalidJobOfferException;
+    List<JobOfferResponse> getAllJobsByTin(String tin) throws InvalidJobOfferException;
 }

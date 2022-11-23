@@ -1,12 +1,13 @@
 package com.safehiring.ems.jpa.repository;
 
-import com.safehiring.ems.jpa.data.JobOffer;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.safehiring.ems.jpa.data.JobOffer;
 
 @Repository
 public interface JobOfferRepository extends JpaRepository<JobOffer, Long> {
-    List<JobOffer> findByPanNumber(String panNumber);
+    List<JobOffer> findByTin(String tin);
 }
