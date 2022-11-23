@@ -12,7 +12,7 @@ public class AccountVerificationEmailContext extends AbstractEmailContext {
     public <T> void init(T context) {
 
         UserEntity user = (UserEntity) context;
-        put("firstName", user.getCompanyName());
+        put("firstName", user.getOrgName());
         setTemplateLocation("emails/email-verification");
         setSubject("Welcome to EMS Complete your registration");
         setFrom("no-reply@safehiring.com");

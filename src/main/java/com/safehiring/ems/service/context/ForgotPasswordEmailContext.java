@@ -13,7 +13,7 @@ public class ForgotPasswordEmailContext extends AbstractEmailContext {
         //we can do any common configuration setup here
         // like setting up some base URL and context
         UserEntity user = (UserEntity) context;
-        put("firstName", user.getCompanyName());
+        put("firstName", user.getOrgName());
         setTemplateLocation("emails/forgot-password");
         setSubject("Forgotten Password");
         setFrom("no-reply@safehiring.com");

@@ -38,6 +38,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void register(EmployerRegistrationRequest registrationRequest) {
+        if(!"INDIA".equalsIgnoreCase(registrationRequest.getCountry())){
+            throw new IllegalArgumentException("Country Not allowed");
+        }
         if (checkIfUserExists(registrationRequest.getEmail())) {
             throw new UserAlreadyExistsException("User already exists for this email");
         }
