@@ -30,13 +30,15 @@ CREATE TABLE IF NOT EXISTS `PRINCIPAL_GROUP`
 CREATE TABLE IF NOT EXISTS `JOB_OFFER`
 (
     `id`                  bigint NOT NULL AUTO_INCREMENT,
-    `company`             varchar(255) DEFAULT NULL,
-    `ctc`                 varchar(255) DEFAULT NULL,
-    `job_title`           varchar(255) DEFAULT NULL,
-    `joining_date`        varchar(255) DEFAULT NULL,
-    `name`                varchar(255) DEFAULT NULL,
+    `ern`                 varchar(255) DEFAULT NULL,
+    `tin`                 varchar(255) DEFAULT NULL,
+    `employer_org_name`             varchar(255) DEFAULT NULL,
+    `employer_email`           varchar(255) DEFAULT NULL,
     `offer_received_date` varchar(255) DEFAULT NULL,
-    `pan_number`          varchar(255) DEFAULT NULL,
+    `joining_date`        varchar(255) DEFAULT NULL,
+    `employment_type`                varchar(255) DEFAULT NULL,
+    `updated_by`  varchar(255) DEFAULT NULL,
+    `enable_employment_offer_monitoring` BIT DEFAULT 0,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 6
