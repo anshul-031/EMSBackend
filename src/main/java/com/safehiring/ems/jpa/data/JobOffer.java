@@ -11,6 +11,7 @@ import javax.persistence.Table;
 
 import org.hibernate.Hibernate;
 
+import com.safehiring.ems.controller.data.reqest.EmploymentOfferStatus;
 import com.safehiring.ems.controller.data.reqest.EmploymentType;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +38,7 @@ public class JobOffer {
     private String joiningDate;
     private Boolean enableEmploymentOfferMonitoring;
     private String updatedBy;
+    private EmploymentOfferStatus employmentOfferStatus;
 
 
     @Override
