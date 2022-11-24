@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import com.safehiring.ems.controller.data.reqest.EmploymentOfferStatus;
 import com.safehiring.ems.controller.data.reqest.JobOfferRequest;
 import com.safehiring.ems.controller.data.response.JobOfferResponse;
 import com.safehiring.ems.exceptio.EmsException;
@@ -36,6 +37,7 @@ public class JobOfferServiceImpl implements JobOfferService {
         final JobOffer jobOffer = new JobOffer();
         BeanUtils.copyProperties(jobOfferRequest, jobOffer);
         jobOffer.setId(null);
+        jobOffer.setEmploymentOfferStatus(EmploymentOfferStatus.ACTIVE);
         this.jobOfferRepository.save(jobOffer);
         return this.populateJobOfferResponse(jobOffer);
     }

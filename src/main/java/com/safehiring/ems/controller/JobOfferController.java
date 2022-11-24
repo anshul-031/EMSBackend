@@ -45,7 +45,6 @@ public class JobOfferController {
 
     @PostMapping("/opt/job")
     public JobOfferResponse createJobOffers(@RequestBody @Valid final JobOfferRequest jobOfferRequest) {
-
         return this.jobOfferService.saveJobOffer(jobOfferRequest);
 
     }
