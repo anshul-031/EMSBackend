@@ -1,7 +1,7 @@
-package com.safehiring.ems.controller.data.response;
+package com.safehiring.ems.model.response;
 
-import com.safehiring.ems.controller.data.reqest.EmploymentOfferStatus;
-import com.safehiring.ems.controller.data.reqest.EmploymentType;
+import com.safehiring.ems.model.EmploymentOfferStatus;
+import com.safehiring.ems.model.EmploymentType;
 import lombok.Data;
 
 @Data

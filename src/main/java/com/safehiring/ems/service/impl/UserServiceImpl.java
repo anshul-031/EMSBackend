@@ -1,26 +1,25 @@
 package com.safehiring.ems.service.impl;
 
-import com.safehiring.ems.controller.data.reqest.EmployerRegistrationRequest;
-import com.safehiring.ems.exceptio.InvalidTokenException;
-import com.safehiring.ems.exceptio.UserAlreadyExistsException;
-import com.safehiring.ems.jpa.data.Group;
-import com.safehiring.ems.jpa.data.SecureToken;
-import com.safehiring.ems.jpa.data.UserEntity;
-import com.safehiring.ems.jpa.repository.GroupRepository;
-import com.safehiring.ems.jpa.repository.SecureTokenRepository;
-import com.safehiring.ems.jpa.repository.UserRepository;
-import com.safehiring.ems.service.EmailService;
-import com.safehiring.ems.service.SecurityTokenService;
-import com.safehiring.ems.service.UserService;
-import com.safehiring.ems.service.context.AccountVerificationEmailContext;
-import lombok.Data;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
+import com.safehiring.ems.exception.InvalidTokenException;
+import com.safehiring.ems.exception.UserAlreadyExistsException;
+import com.safehiring.ems.jpa.data.Group;
+import com.safehiring.ems.jpa.data.SecureToken;
+import com.safehiring.ems.jpa.data.UserEntity;
+import com.safehiring.ems.jpa.repository.GroupRepository;
+import com.safehiring.ems.jpa.repository.SecureTokenRepository;
+import com.safehiring.ems.jpa.repository.UserRepository;
+import com.safehiring.ems.model.request.EmployerRegistrationRequest;
+import com.safehiring.ems.service.EmailService;
+import com.safehiring.ems.service.SecurityTokenService;
+import com.safehiring.ems.service.UserService;
+import com.safehiring.ems.service.context.AccountVerificationEmailContext;
+import lombok.Data;
 
 @Service
 @Data
@@ -37,58 +36,58 @@ public class UserServiceImpl implements UserService {
     private String baseUrl;
 
     @Override
-    public void register(EmployerRegistrationRequest registrationRequest) {
-        if(!"INDIA".equalsIgnoreCase(registrationRequest.getCountry())){
+    public void register(final EmployerRegistrationRequest registrationRequest) {
+        if (!"INDIA".equalsIgnoreCase(registrationRequest.getCountry())) {
             throw new IllegalArgumentException("Country Not allowed");
         }
-        if (checkIfUserExists(registrationRequest.getEmail())) {
+        if (this.checkIfUserExists(registrationRequest.getEmail())) {
             throw new UserAlreadyExistsException("User already exists for this email");
         }
-        UserEntity userEntity = new UserEntity();
+        final UserEntity userEntity = new UserEntity();
         BeanUtils.copyProperties(registrationRequest, userEntity);
-        userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
-        updateUserGroup(userEntity, registrationRequest.getGroup());
-        userRepository.save(userEntity);
-        sendRegistrationConfirmationEmail(userEntity);
+        userEntity.setPassword(this.passwordEncoder.encode(userEntity.getPassword()));
+        this.updateUserGroup(userEntity, registrationRequest.getGroup());
+        this.userRepository.save(userEntity);
+        this.sendRegistrationConfirmationEmail(userEntity);
 
     }
 
-    private void updateUserGroup(UserEntity entity, String code) {
-        Group group = groupRepository.findByCode(code).orElseThrow(() -> new RuntimeException("Group " + code + " doesn't exists"));
+    private void updateUserGroup(final UserEntity entity, final String code) {
+        final Group group = this.groupRepository.findByCode(code).orElseThrow(() -> new RuntimeException("Group " + code + " doesn't exists"));
         entity.addUserGroups(group);
 
     }
 
     @Override
-    public boolean checkIfUserExists(String email) {
-        return userRepository.findByEmail(email).isPresent();
+    public boolean checkIfUserExists(final String email) {
+        return this.userRepository.findByEmail(email).isPresent();
     }
 
     @Override
-    public void sendRegistrationConfirmationEmail(UserEntity user) {
-        SecureToken secureToken = securityTokenService.createSecureToken();
+    public void sendRegistrationConfirmationEmail(final UserEntity user) {
+        final SecureToken secureToken = this.securityTokenService.createSecureToken();
         secureToken.setUser(user);
-        secureTokenRepository.save(secureToken);
-        AccountVerificationEmailContext emailContext = new AccountVerificationEmailContext();
+        this.secureTokenRepository.save(secureToken);
+        final AccountVerificationEmailContext emailContext = new AccountVerificationEmailContext();
         emailContext.init(user);
         emailContext.setToken(secureToken.getToken());
-        emailContext.buildVerificationUrl(baseUrl, secureToken.getToken());
+        emailContext.buildVerificationUrl(this.baseUrl, secureToken.getToken());
         try {
-            emailService.sendMail(emailContext);
-        } catch (Exception e) {
+            this.emailService.sendMail(emailContext);
+        } catch (final Exception e) {
             e.printStackTrace();
         }
 
     }
 
     @Override
-    public boolean verifyUser(String token) throws InvalidTokenException {
-        SecureToken secureToken = secureTokenService.findByToken(token);
-        UserEntity user = userRepository.findById(secureToken.getUser().getId()).orElseThrow(() -> new UsernameNotFoundException("User doesn't exists"));
+    public boolean verifyUser(final String token) throws InvalidTokenException {
+        final SecureToken secureToken = this.secureTokenService.findByToken(token);
+        final UserEntity user = this.userRepository.findById(secureToken.getUser().getId()).orElseThrow(() -> new UsernameNotFoundException("User doesn't exists"));
         user.setAccountVerified(true);
-        userRepository.save(user);
+        this.userRepository.save(user);
 
-        secureTokenService.removeToken(secureToken);
+        this.secureTokenService.removeToken(secureToken);
         return true;
     }
 

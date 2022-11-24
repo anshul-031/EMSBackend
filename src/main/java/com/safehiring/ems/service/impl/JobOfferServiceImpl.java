@@ -6,13 +6,13 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import com.safehiring.ems.controller.data.reqest.EmploymentOfferStatus;
-import com.safehiring.ems.controller.data.reqest.JobOfferRequest;
-import com.safehiring.ems.controller.data.response.JobOfferResponse;
-import com.safehiring.ems.exceptio.EmsException;
-import com.safehiring.ems.exceptio.InvalidJobOfferException;
+import com.safehiring.ems.exception.EmsException;
+import com.safehiring.ems.exception.InvalidJobOfferException;
 import com.safehiring.ems.jpa.data.JobOffer;
 import com.safehiring.ems.jpa.repository.JobOfferRepository;
+import com.safehiring.ems.model.EmploymentOfferStatus;
+import com.safehiring.ems.model.request.JobOfferRequest;
+import com.safehiring.ems.model.response.JobOfferResponse;
 import com.safehiring.ems.service.JobOfferService;
 import lombok.Data;
 
@@ -37,7 +37,7 @@ public class JobOfferServiceImpl implements JobOfferService {
         final JobOffer jobOffer = new JobOffer();
         BeanUtils.copyProperties(jobOfferRequest, jobOffer);
         jobOffer.setId(null);
-        jobOffer.setEmploymentOfferStatus(EmploymentOfferStatus.ACTIVE);
+        jobOffer.setEmploymentOfferStatus(EmploymentOfferStatus.EXPIRED);
         this.jobOfferRepository.save(jobOffer);
         return this.populateJobOfferResponse(jobOffer);
     }

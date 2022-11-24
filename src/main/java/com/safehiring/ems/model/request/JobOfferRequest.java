@@ -1,5 +1,6 @@
-package com.safehiring.ems.controller.data.reqest;
+package com.safehiring.ems.model.request;
 
+import com.safehiring.ems.model.EmploymentType;
 import lombok.Data;
 
 @Data

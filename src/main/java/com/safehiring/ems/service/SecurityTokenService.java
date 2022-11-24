@@ -1,6 +1,6 @@
 package com.safehiring.ems.service;
 
-import com.safehiring.ems.exceptio.InvalidTokenException;
+import com.safehiring.ems.exception.InvalidTokenException;
 import com.safehiring.ems.jpa.data.SecureToken;
 
 public interface SecurityTokenService {
