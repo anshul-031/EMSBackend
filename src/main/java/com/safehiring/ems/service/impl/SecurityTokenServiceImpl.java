@@ -1,19 +1,20 @@
 package com.safehiring.ems.service.impl;
 
-import com.safehiring.ems.exceptio.InvalidTokenException;
-import com.safehiring.ems.jpa.data.SecureToken;
-import com.safehiring.ems.jpa.repository.SecureTokenRepository;
-import com.safehiring.ems.service.SecurityTokenService;
-import lombok.Data;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
+
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.keygen.BytesKeyGenerator;
 import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.stereotype.Service;
 
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
+import com.safehiring.ems.exception.InvalidTokenException;
+import com.safehiring.ems.jpa.data.SecureToken;
+import com.safehiring.ems.jpa.repository.SecureTokenRepository;
+import com.safehiring.ems.service.SecurityTokenService;
+import lombok.Data;
 
 
 @Service
@@ -29,8 +30,8 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
 
     @Override
     public SecureToken createSecureToken() {
-        String tokenValue = new String(Base64.encodeBase64URLSafe(DEFAULT_TOKEN_GENERATOR.generateKey()));
-        SecureToken secureToken = new SecureToken();
+        final String tokenValue = new String(Base64.encodeBase64URLSafe(DEFAULT_TOKEN_GENERATOR.generateKey()));
+        final SecureToken secureToken = new SecureToken();
         secureToken.setToken(tokenValue);
         secureToken.setExpireAt(LocalDateTime.now().plusSeconds(getTokenValidityInSeconds()));
         this.saveSecureToken(secureToken);
@@ -38,22 +39,22 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
     }
 
     @Override
-    public void saveSecureToken(SecureToken token) {
-        secureTokenRepository.save(token);
+    public void saveSecureToken(final SecureToken token) {
+        this.secureTokenRepository.save(token);
     }
 
     @Override
-    public SecureToken findByToken(String token) throws InvalidTokenException {
-        return secureTokenRepository.findByToken(token).orElseThrow(() -> new InvalidTokenException(" Invalid token"));
+    public SecureToken findByToken(final String token) throws InvalidTokenException {
+        return this.secureTokenRepository.findByToken(token).orElseThrow(() -> new InvalidTokenException(" Invalid token"));
     }
 
     @Override
-    public void removeTokenByToken(String token) {
-        secureTokenRepository.removeByToken(token);
+    public void removeTokenByToken(final String token) {
+        this.secureTokenRepository.removeByToken(token);
     }
 
     @Override
-    public void removeToken(SecureToken token) {
-        secureTokenRepository.delete(token);
+    public void removeToken(final SecureToken token) {
+        this.secureTokenRepository.delete(token);
     }
 }

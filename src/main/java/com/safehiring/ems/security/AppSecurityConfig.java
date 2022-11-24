@@ -1,10 +1,7 @@
 package com.safehiring.ems.security;
 
-import com.safehiring.ems.exceptio.CustomAccessDeniedHandler;
-import com.safehiring.ems.exceptio.InvalidTokenException;
-import com.safehiring.ems.service.impl.UserDetailServiceImpl;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import javax.annotation.Resource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -15,7 +12,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
-import javax.annotation.Resource;
+import com.safehiring.ems.exception.CustomAccessDeniedHandler;
+import com.safehiring.ems.service.impl.UserDetailServiceImpl;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @EnableWebSecurity
@@ -27,7 +27,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     UserDetailServiceImpl userDetailService;
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(final HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/login", "/v1/api/register/**").permitAll()
@@ -46,7 +46,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/v1/api/offer/opt/**").hasAnyAuthority("EMPLOYER", "ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .exceptionHandling().accessDeniedHandler(accessDeniedHandler())
+                .exceptionHandling().accessDeniedHandler(this.accessDeniedHandler())
                 .and()
                 .formLogin()
                 .and()
@@ -54,9 +54,9 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) {
+    protected void configure(final AuthenticationManagerBuilder auth) {
 
-        auth.authenticationProvider(authenticationProvider());
+        auth.authenticationProvider(this.authenticationProvider());
         /**
          auth.inMemoryAuthentication()
          .withUser("admin")
@@ -68,9 +68,9 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
-        daoAuthenticationProvider.setUserDetailsService(userDetailService);
+        final DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setPasswordEncoder(this.passwordEncoder);
+        daoAuthenticationProvider.setUserDetailsService(this.userDetailService);
         return daoAuthenticationProvider;
     }
 

@@ -1,4 +1,4 @@
-package com.safehiring.ems.controller.data.reqest;
+package com.safehiring.ems.model;
 
 public enum EmploymentType {
 	INTERNSHIP,

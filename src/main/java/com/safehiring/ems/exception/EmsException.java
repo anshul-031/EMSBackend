@@ -1,4 +1,4 @@
-package com.safehiring.ems.exceptio;
+package com.safehiring.ems.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

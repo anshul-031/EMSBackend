@@ -1,4 +1,4 @@
-package com.safehiring.ems.controller.data.reqest;
+package com.safehiring.ems.model.request;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;

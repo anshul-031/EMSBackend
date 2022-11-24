@@ -1,4 +1,4 @@
-package com.safehiring.ems.exceptio;
+package com.safehiring.ems.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
-public class InvalidJobOfferException extends EmsException {
-    private final String code;
+public class InvalidTokenException extends EmsException {
     private final String message;
 
 }

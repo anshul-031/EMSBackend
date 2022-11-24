@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.safehiring.ems.controller.data.reqest.JobOfferRequest;
-import com.safehiring.ems.controller.data.response.JobOfferResponse;
-import com.safehiring.ems.exceptio.InvalidJobOfferException;
+import com.safehiring.ems.exception.InvalidJobOfferException;
+import com.safehiring.ems.model.request.JobOfferRequest;
+import com.safehiring.ems.model.response.JobOfferResponse;
 import com.safehiring.ems.service.JobOfferService;
 import lombok.AllArgsConstructor;
 import lombok.Data;

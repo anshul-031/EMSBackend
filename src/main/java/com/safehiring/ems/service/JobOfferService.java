@@ -2,9 +2,9 @@ package com.safehiring.ems.service;
 
 import java.util.List;
 
-import com.safehiring.ems.controller.data.reqest.JobOfferRequest;
-import com.safehiring.ems.controller.data.response.JobOfferResponse;
-import com.safehiring.ems.exceptio.InvalidJobOfferException;
+import com.safehiring.ems.exception.InvalidJobOfferException;
+import com.safehiring.ems.model.request.JobOfferRequest;
+import com.safehiring.ems.model.response.JobOfferResponse;
 
 
 public interface JobOfferService {
