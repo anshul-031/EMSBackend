@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
         userEntity.setPassword(this.passwordEncoder.encode(userEntity.getPassword()));
         this.updateUserGroup(userEntity, registrationRequest.getGroup());
         this.userRepository.save(userEntity);
-        this.sendRegistrationConfirmationEmail(userEntity);
+       // this.sendRegistrationConfirmationEmail(userEntity);
 
     }
 

@@ -24,6 +24,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
         if (authentication != null) {
             log.info("User '" + authentication.getName() + "' attempted to access the unauthorised URL: " + request.getRequestURI());
         }
+        response.getWriter().write("Access Denied... Forbidden");
         response.sendError(HttpStatus.FORBIDDEN.value(), "You are not authorize to perform this action please contact admin@safehiring.com");
     }
 }

@@ -37,7 +37,7 @@ public class JobOfferServiceImpl implements JobOfferService {
         final JobOffer jobOffer = new JobOffer();
         BeanUtils.copyProperties(jobOfferRequest, jobOffer);
         jobOffer.setId(null);
-        jobOffer.setEmploymentOfferStatus(EmploymentOfferStatus.ACTIVE);
+        jobOffer.setEmploymentOfferStatus(EmploymentOfferStatus.EXPIRED);
         this.jobOfferRepository.save(jobOffer);
         return this.populateJobOfferResponse(jobOffer);
     }
