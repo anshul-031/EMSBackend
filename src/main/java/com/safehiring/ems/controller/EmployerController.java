@@ -7,7 +7,6 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.safehiring.ems.api.EmployerAPI;
 import com.safehiring.ems.exception.InvalidJobOfferException;
@@ -18,9 +17,8 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 
-@CrossOrigin("*")
-@Data
 @Slf4j
+@Data
 //TO DO
 // Protect This controller with Scope= Employer meaning only an employer can access this API
 //@RequiresScope({ Scope.Employer })
@@ -46,9 +44,9 @@ public class EmployerController implements EmployerAPI {
 	public ResponseEntity<JobOfferResponse> updateEmploymentOffers(@Valid final JobOfferRequest jobOfferRequest) {
 		//TO DO
 		//1. An Employer can update only his own offer letters.
-		//2. Fetch the respective employers offers & then search for Job offer provided by Tin
+		//2. Fetch the Employer Details like employerEmail.
+		//2. Search the respective employers offers by employermail & tim number
 		//3. Update the respective fields.
-		//4. An Employer can update only:- "Employment Status".
 		return null;
 	}
 }
