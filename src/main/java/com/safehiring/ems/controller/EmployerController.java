@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.safehiring.ems.api.EmployerAPI;
 import com.safehiring.ems.exception.InvalidJobOfferException;
@@ -22,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 //TO DO
 // Protect This controller with Scope= Employer meaning only an employer can access this API
 //@RequiresScope({ Scope.Employer })
+@RestController
 public class EmployerController implements EmployerAPI {
 
 	private final JobOfferService jobOfferService;

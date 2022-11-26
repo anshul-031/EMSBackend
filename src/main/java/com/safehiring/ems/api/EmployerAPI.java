@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.safehiring.ems.model.request.JobOfferRequest;
 import com.safehiring.ems.model.response.JobOfferResponse;
 
+
 @CrossOrigin("*")
-@RequestMapping("/v1/employer")
+@RequestMapping("/v1/api/employer")
 public interface EmployerAPI {
 
 	@PostMapping(value = "/employmentoffer", produces = { "application/json" }, consumes = { "application/json" })
