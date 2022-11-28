@@ -9,7 +9,7 @@ public class JobOfferResponse {
     private Long id;
     private String ern;
     private String tin;
-    private String offerReceivedDate;
+    private String offerUpdatedOn;
     private String joiningDate;
     private EmploymentType employmentType;
     private String employerOrgName;
