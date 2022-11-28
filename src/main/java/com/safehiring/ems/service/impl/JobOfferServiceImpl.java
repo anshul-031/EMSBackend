@@ -38,6 +38,9 @@ public class JobOfferServiceImpl implements JobOfferService {
         BeanUtils.copyProperties(jobOfferRequest, jobOffer);
         jobOffer.setId(null);
         jobOffer.setEmploymentOfferStatus(EmploymentOfferStatus.ACTIVE);
+        jobOffer.setUpdatedBy("employer@gmail.com"); //TO DO fetch Username from JWT token
+        jobOffer.setOfferUpdatedOn(java.time.Clock.systemUTC().instant().toString()); // TO DO AUTOMATICALLY UPDATE
+        // THE TIMESTAMP ON WHICH THIS VALUE IS UPDATED IN DB
         this.jobOfferRepository.save(jobOffer);
         return this.populateJobOfferResponse(jobOffer);
     }

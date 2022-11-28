@@ -34,7 +34,7 @@ public class JobOffer {
     private EmploymentType employmentType;
     private String employerOrgName;
     private String employerEmail;
-    private String offerReceivedDate;
+    private String offerUpdatedOn;
     private String joiningDate;
     private Boolean enableEmploymentOfferMonitoring;
     private String updatedBy;

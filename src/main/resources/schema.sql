@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `JOB_OFFER`
     `tin`                 varchar(255) DEFAULT NULL,
     `employer_org_name`             varchar(255) DEFAULT NULL,
     `employer_email`           varchar(255) DEFAULT NULL,
-    `offer_received_date` varchar(255) DEFAULT NULL,
+    `offer_updated_on`     varchar(255) DEFAULT NULL,
     `joining_date`        varchar(255) DEFAULT NULL,
     `employment_type`                varchar(255) DEFAULT NULL,
     `updated_by`  varchar(255) DEFAULT NULL,
