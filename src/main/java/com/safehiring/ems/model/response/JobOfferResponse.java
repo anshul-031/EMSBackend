@@ -8,6 +8,7 @@ import lombok.Data;
 public class JobOfferResponse {
     private Long id;
     private String ern;
+    private String employeeCountry;
     private String tin;
     private String offerUpdatedOn;
     private String joiningDate;

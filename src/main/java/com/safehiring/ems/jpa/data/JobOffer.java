@@ -30,6 +30,7 @@ public class JobOffer {
     @Column(name = "id", nullable = false)
     private Long id;
     private String ern;
+    private String employeeCountry;
     private String tin;
     private EmploymentType employmentType;
     private String employerOrgName;

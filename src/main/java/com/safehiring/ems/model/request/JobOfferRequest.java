@@ -8,7 +8,8 @@ public class JobOfferRequest {
     private Long id;
     private String ern;
     private String tin;
-    private String joiningDate;
+    private String employeeCountry;
+    private String joiningDate; //TO DO Not Null & Accept Joining Date in some computer understandable format only
     private EmploymentType employmentType;
     private String employerOrgName;
     private String employerEmail;
