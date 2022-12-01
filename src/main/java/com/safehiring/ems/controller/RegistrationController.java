@@ -1,13 +1,10 @@
 package com.safehiring.ems.controller;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import javax.validation.Valid;
 
-import com.safehiring.ems.exception.InvalidUserException;
-import com.safehiring.ems.model.request.JwtRequest;
-import com.safehiring.ems.model.request.JwtResponse;
-import com.safehiring.ems.model.request.UserVo;
-import com.safehiring.ems.service.impl.UserDetailServiceImpl;
-import com.safehiring.ems.util.JwtUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -23,13 +20,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safehiring.ems.exception.InvalidTokenException;
+import com.safehiring.ems.exception.InvalidUserException;
 import com.safehiring.ems.model.request.EmployerRegistrationRequest;
+import com.safehiring.ems.model.request.JwtRequest;
+import com.safehiring.ems.model.request.JwtResponse;
+import com.safehiring.ems.model.request.UserVo;
 import com.safehiring.ems.service.UserService;
+import com.safehiring.ems.service.impl.UserDetailServiceImpl;
+import com.safehiring.ems.util.JwtUtil;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin("*")
@@ -76,25 +76,30 @@ public class RegistrationController {
     }
 
     @PostMapping("/signin")
-    public JwtResponse generateJwtToken(@RequestBody JwtRequest jwtRequest) {
+    public JwtResponse generateJwtToken(@RequestBody final JwtRequest jwtRequest) {
         try {
-            authenticationManager.authenticate(
+            this.authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getUserpwd()));
-        } catch (DisabledException e) {
+        } catch (final DisabledException e) {
+            /***
+             * TO DO PRIORITY 0
+             * DisabledException not working. That means If a user is inactive, Still we are not geeting this
+             * DisabledException error
+             */
             throw new InvalidUserException("User Inactive");
-        } catch (BadCredentialsException e) {
+        } catch (final BadCredentialsException e) {
             throw new InvalidUserException("Invalid Credentials");
         }
-        UserDetails userDetails = userAuthService.loadUserByUsername(jwtRequest.getUsername());
-        String username = userDetails.getUsername();
-        String userpwd = userDetails.getPassword();
-        Set<String> roles = userDetails.getAuthorities().stream().map(r -> r.getAuthority())
+        final UserDetails userDetails = this.userAuthService.loadUserByUsername(jwtRequest.getUsername());
+        final String username = userDetails.getUsername();
+        final String userpwd = userDetails.getPassword();
+        final Set<String> roles = userDetails.getAuthorities().stream().map(r -> r.getAuthority())
                 .collect(Collectors.toSet());
-        UserVo user = new UserVo();
+        final UserVo user = new UserVo();
         user.setUsername(username);
         user.setUserpwd(userpwd);
         user.setRoles(roles);
-        String token = jwtUtil.generateToken(user);
+        final String token = this.jwtUtil.generateToken(user);
         return new JwtResponse(token);
     }
 }

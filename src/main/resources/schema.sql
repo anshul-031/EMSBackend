@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `JOB_OFFER`
 (
     `id`                  bigint NOT NULL AUTO_INCREMENT,
     `ern`                 varchar(255) DEFAULT NULL,
+    `employee_country`    varchar(255) DEFAULT NULL,
     `tin`                 varchar(255) DEFAULT NULL,
     `employer_org_name`             varchar(255) DEFAULT NULL,
     `employer_email`           varchar(255) DEFAULT NULL,

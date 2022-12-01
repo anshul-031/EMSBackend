@@ -1,5 +1,6 @@
 package com.safehiring.ems.jpa.data;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -30,12 +31,13 @@ public class JobOffer {
     @Column(name = "id", nullable = false)
     private Long id;
     private String ern;
+    private String employeeCountry;
     private String tin;
     private EmploymentType employmentType;
     private String employerOrgName;
     private String employerEmail;
-    private String offerUpdatedOn;
-    private String joiningDate;
+    private LocalDate offerUpdatedOn;
+    private LocalDate joiningDate;
     private Boolean enableEmploymentOfferMonitoring;
     private String updatedBy;
     private EmploymentOfferStatus employmentOfferStatus;

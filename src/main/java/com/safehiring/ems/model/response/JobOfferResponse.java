@@ -1,5 +1,7 @@
 package com.safehiring.ems.model.response;
 
+import java.time.LocalDate;
+
 import com.safehiring.ems.model.EmploymentOfferStatus;
 import com.safehiring.ems.model.EmploymentType;
 import lombok.Data;
@@ -8,9 +10,10 @@ import lombok.Data;
 public class JobOfferResponse {
     private Long id;
     private String ern;
+    private String employeeCountry;
     private String tin;
-    private String offerUpdatedOn;
-    private String joiningDate;
+    private LocalDate offerUpdatedOn;
+    private LocalDate joiningDate;
     private EmploymentType employmentType;
     private String employerOrgName;
     private String employerEmail;
