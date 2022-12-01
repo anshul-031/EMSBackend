@@ -1,5 +1,6 @@
 package com.safehiring.ems.service.impl;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class JobOfferServiceImpl implements JobOfferService {
         jobOffer.setId(null);
         jobOffer.setEmploymentOfferStatus(EmploymentOfferStatus.ACTIVE);
         jobOffer.setUpdatedBy("employer@gmail.com"); //TO DO fetch Username from JWT token
-        jobOffer.setOfferUpdatedOn(java.time.Clock.systemUTC().instant().toString());
+        jobOffer.setOfferUpdatedOn(LocalDate.now());
         this.jobOfferRepository.save(jobOffer);
         /***
          * TO DO
@@ -57,7 +58,8 @@ public class JobOfferServiceImpl implements JobOfferService {
 
     @Override
     public JobOfferResponse updateJobOffer(final JobOfferRequest jobOfferRequest) {
-        final JobOffer jobOffer = this.jobOfferRepository.findById(jobOfferRequest.getId()).orElseThrow(() -> new InvalidJobOfferException(EmsException.INVALID_JOB_OFFER, "Invalid job"));
+        final JobOffer jobOffer =
+                this.jobOfferRepository.findById(jobOfferRequest.getOfferId()).orElseThrow(() -> new InvalidJobOfferException(EmsException.INVALID_JOB_OFFER, "Invalid job"));
         BeanUtils.copyProperties(jobOfferRequest, jobOffer);
         this.jobOfferRepository.save(jobOffer);
         return this.populateJobOfferResponse(jobOffer);
