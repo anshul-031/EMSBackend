@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `PRINCIPAL_GROUP`
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 
-CREATE TABLE IF NOT EXISTS `JOB_OFFER`
+CREATE TABLE IF NOT EXISTS `EMPLOYMENT_OFFER`
 (
     `offer_id`                      bigint NOT NULL AUTO_INCREMENT,
     `ern`                           varchar(255) DEFAULT NULL,
