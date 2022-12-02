@@ -2,6 +2,7 @@ package com.safehiring.ems.model.request;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
@@ -19,6 +20,7 @@ public class JobOfferRequest {
     private LocalDate joiningDate;
     private EmploymentType employmentType;
     private String employerOrgName;
+    @Email
     private String employerEmail;
     private Boolean enableEmploymentOfferMonitoring;
 }

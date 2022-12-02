@@ -7,5 +7,5 @@ public class SearchJobOfferRequest {
 	private Long offerId;
 	private String ern;
 	private String tin;
-	private String employeeCountry;
+	private String employeeCountry; // TO DO Add Field as Enum for country.
 }
