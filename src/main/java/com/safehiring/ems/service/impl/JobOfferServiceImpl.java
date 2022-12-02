@@ -21,6 +21,13 @@ import lombok.Data;
 @Data
 public class JobOfferServiceImpl implements JobOfferService {
 
+    /***
+     * TO DO Least Priority
+     * Add a Schedular which runs every 24 hours updating All "ACTIVE" Employment Offer to "EXPIRED" whose Joining
+     * Date has passed.
+     *
+     */
+
     private final JobOfferRepository jobOfferRepository;
 
     @Override
