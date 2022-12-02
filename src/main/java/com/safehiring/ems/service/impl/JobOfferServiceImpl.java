@@ -36,20 +36,20 @@ public class JobOfferServiceImpl implements JobOfferService {
     @Override
     public JobOfferResponse saveJobOffer(final JobOfferRequest jobOfferRequest) {
         /***
-         * TO DO
+         * TO DO High Priority
          * Check if there is already an "ACTIVE" Employment Offer by the current Employer to the candidate, throw an
          * exception, "Employment Offer already exist by the {{CurrentEmployer}}, please use the update API to update
          * the employment offer"
          */
         final JobOffer jobOffer = new JobOffer();
         BeanUtils.copyProperties(jobOfferRequest, jobOffer);
-        jobOffer.setId(null);
+        jobOffer.setOfferId(null);
         jobOffer.setEmploymentOfferStatus(EmploymentOfferStatus.ACTIVE);
         jobOffer.setUpdatedBy("employer@gmail.com"); //TO DO fetch Username from JWT token
         jobOffer.setOfferUpdatedOn(LocalDate.now());
         this.jobOfferRepository.save(jobOffer);
         /***
-         * TO DO
+         * TO DO Least Priority
          * Check if the new Employee hired already has another 'ACTIVE' Employment offer, send other previous employer
          * who have 'ACTIVE' employment offer, an email intimation that the candidate received a new offer
          */

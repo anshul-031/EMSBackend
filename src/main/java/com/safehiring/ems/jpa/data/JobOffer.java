@@ -28,8 +28,8 @@ import lombok.ToString;
 public class JobOffer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+    @Column(name = "offerId", nullable = false)
+    private Long offerId;
     private String ern;
     private String employeeCountry;
     private String tin;
@@ -52,7 +52,7 @@ public class JobOffer {
             return false;
         }
         final JobOffer jobOffer = (JobOffer) o;
-        return this.id != null && Objects.equals(this.id, jobOffer.id);
+        return this.offerId != null && Objects.equals(this.offerId, jobOffer.offerId);
     }
 
     @Override

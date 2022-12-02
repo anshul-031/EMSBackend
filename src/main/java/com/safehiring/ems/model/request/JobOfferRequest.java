@@ -13,10 +13,10 @@ public class JobOfferRequest {
     private Long offerId;
     private String ern;
     private String tin;
-    private String employeeCountry;
+    private String employeeCountry; // TO DO Use ENUM for country
     @NotNull(message = "{employer.jobOffer.joiningDate}")
     @Future(message = "{employer.jobOffer.joiningDate}")
-    private LocalDate joiningDate; //TO DO Check for Future dates only
+    private LocalDate joiningDate;
     private EmploymentType employmentType;
     private String employerOrgName;
     private String employerEmail;

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.safehiring.ems.model.request.JobOfferRequest;
+import com.safehiring.ems.model.request.SearchJobOfferRequest;
 import com.safehiring.ems.model.response.JobOfferResponse;
 
 @CrossOrigin("*")
@@ -23,8 +24,8 @@ public interface EmployerAPI {
 	@PostMapping(value = "/employmentoffer", produces = { "application/json" }, consumes = { "application/json" })
 	ResponseEntity<JobOfferResponse> createJobOffers(@RequestBody @Valid final JobOfferRequest jobOfferRequest);
 
-	@GetMapping(value = "/employmentoffer/{tin}")
-	ResponseEntity<List<JobOfferResponse>> getAllEmploymentOffers(@PathVariable final String tin);
+	@GetMapping(value = "/employmentoffer/search")
+	ResponseEntity<List<JobOfferResponse>> getAllEmploymentOffers(@RequestBody SearchJobOfferRequest searchJobOfferRequest);
 
 	@PutMapping(value = "/employmentoffer", produces = { "application/json" }, consumes = { "application/json" })
 	ResponseEntity<JobOfferResponse> updateEmploymentOffers(@RequestBody @Valid final JobOfferRequest jobOfferRequest);
