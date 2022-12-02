@@ -1,252 +1,13 @@
 {
 	"info": {
-		"_postman_id": "19aea6a1-26b1-4588-9e89-2fba1c9486b0",
+		"_postman_id": "c74232c3-4b85-4df1-a1ed-f667c9c9a414",
 		"name": "EMS",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14084659"
 	},
 	"item": [
 		{
-			"name": "Employee",
-			"item": [
-				{
-					"name": "RegisterEmployee",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\":\"rais9jmi\",\n    \"password\":\"password\",\n    \"companyName\":\"Google\",\n    \"cinNumber\":\"cinNumber\",\n    \"website\":\"http://www.google.com\",\n    \"mobile\":123456789\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/register/employee",
-							"protocol": "http",
-							"host": [
-								"{{BASE-URL}}"
-							],
-							"path": [
-								"v1",
-								"api",
-								"register",
-								"employee"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Jobs",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "username",
-									"value": "employee@gmail.com",
-									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "password",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/offer/view/all",
-							"protocol": "http",
-							"host": [
-								"{{BASE-URL}}"
-							],
-							"path": [
-								"v1",
-								"api",
-								"offer",
-								"view",
-								"all"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Jobs by Id",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "username",
-									"value": "employee@gmail.com",
-									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "password",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/offer/opt/job/6",
-							"protocol": "http",
-							"host": [
-								"{{BASE-URL}}"
-							],
-							"path": [
-								"v1",
-								"api",
-								"offer",
-								"opt",
-								"job",
-								"6"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Jobs by Pan Number",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "username",
-									"value": "employee@gmail.com",
-									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "password",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/offer/view/job/AQQPA6292G",
-							"protocol": "http",
-							"host": [
-								"{{BASE-URL}}"
-							],
-							"path": [
-								"v1",
-								"api",
-								"offer",
-								"view",
-								"job",
-								"AQQPA6292G"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Post Job",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "username",
-									"value": "employee@gmail.com",
-									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "password",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"id\": 0,\n  \"name\": \"MyJob\",\n  \"company\": \"Amazon\",\n  \"offerReceivedDate\": \"2022-10-20\",\n  \"joiningDate\": \"2022-11-20\",\n  \"jobTitle\": \"Support\",\n  \"ctc\": \"12L\",\n  \"panNumber\": \"AQQPA6292G\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/offer/opt/job",
-							"protocol": "http",
-							"host": [
-								"{{BASE-URL}}"
-							],
-							"path": [
-								"v1",
-								"api",
-								"offer",
-								"opt",
-								"job"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Job",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "username",
-									"value": "employee@gmail.com",
-									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "password",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"id\": 7,\n  \"name\": \"MyJob\",\n  \"company\": \"Google\",\n  \"offerReceivedDate\": \"2022-10-20\",\n  \"joiningDate\": \"2022-11-20\",\n  \"jobTitle\": \"HR\",\n  \"ctc\": \"12L\",\n  \"panNumber\": \"AIIPA5182F\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/offer/opt/job",
-							"protocol": "http",
-							"host": [
-								"{{BASE-URL}}"
-							],
-							"path": [
-								"v1",
-								"api",
-								"offer",
-								"opt",
-								"job"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Employer",
+			"name": "EmployerAPI",
 			"item": [
 				{
 					"name": "RegisterEmployer",
@@ -255,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\":\"rais7jmi@gmail.com\",\n    \"password\":\"password\",\n    \"companyName\":\"Google\",\n    \"cinNumber\":\"cinNumber\",\n    \"website\":\"http://www.google.com\",\n    \"mobile\":123456789\n}",
+							"raw": "{\n    \"email\":\"anshulgoel033@gmail.com\",\n    \"password\":\"password\",\n    \"website\":\"http://www.google.com\",\n    \"mobile\":123456789,\n    \"orgName\":\"Facebook\",\n    \"country\":\"India\",\n    \"referredBy\":\"anshulgoel0999@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -276,123 +37,79 @@
 							]
 						}
 					},
-					"response": []
-				},
-				{
-					"name": "Get Jobs",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
+					"response": [
+						{
+							"name": "RegisterEmployer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"anshulgoel033@gmail.com\",\n    \"password\":\"password\",\n    \"website\":\"http://www.google.com\",\n    \"mobile\":123456789,\n    \"orgName\":\"Facebook\",\n    \"country\":\"India\",\n    \"referredBy\":\"anshulgoel0999@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{BASE-URL}}/v1/api/register/employer",
+									"protocol": "http",
+									"host": [
+										"{{BASE-URL}}"
+									],
+									"path": [
+										"v1",
+										"api",
+										"register",
+										"employer"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
 								{
-									"key": "username",
-									"value": "employer@gmail.com",
-									"type": "string"
+									"key": "Vary",
+									"value": "Origin"
 								},
 								{
-									"key": "password",
-									"value": "password",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/offer/view/all",
-							"protocol": "http",
-							"host": [
-								"{{BASE-URL}}"
-							],
-							"path": [
-								"v1",
-								"api",
-								"offer",
-								"view",
-								"all"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Jobs by Id",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "username",
-									"value": "employer@gmail.com",
-									"type": "string"
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
 								},
 								{
-									"key": "password",
-									"value": "password",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/offer/opt/job/6",
-							"protocol": "http",
-							"host": [
-								"{{BASE-URL}}"
-							],
-							"path": [
-								"v1",
-								"api",
-								"offer",
-								"opt",
-								"job",
-								"6"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Jobs by Pan Number",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "username",
-									"value": "employer@gmail.com",
-									"type": "string"
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
 								},
 								{
-									"key": "password",
-									"value": "password",
-									"type": "string"
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Dec 2022 07:00:25 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
 								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/offer/view/job/AQQPA6292G",
-							"protocol": "http",
-							"host": [
-								"{{BASE-URL}}"
 							],
-							"path": [
-								"v1",
-								"api",
-								"offer",
-								"view",
-								"job",
-								"AQQPA6292G"
-							]
+							"cookie": [],
+							"body": "Employer registration successful"
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "Post Job",
+					"name": "SignInEmployer",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -413,7 +130,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": 0,\n  \"name\": \"MyJob\",\n  \"company\": \"Amazon\",\n  \"offerReceivedDate\": \"2022-10-20\",\n  \"joiningDate\": \"2022-11-20\",\n  \"jobTitle\": \"Support\",\n  \"ctc\": \"12L\",\n  \"panNumber\": \"AQQPA6292G\"\n}",
+							"raw": "{\n    \"username\":\"anshulgoel034@gmail.com\",\n    \"userpwd\":\"{bcrypt}$2a$10$p4V2tmFjlkK2G7Rge5sbaeaF4ug5BReQA.tyfrKzQ5DZc3iCzpjYO\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -421,7 +138,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/offer/opt/job",
+							"raw": "http://{{BASE-URL}}/v1/api/register/signin",
 							"protocol": "http",
 							"host": [
 								"{{BASE-URL}}"
@@ -429,196 +146,91 @@
 							"path": [
 								"v1",
 								"api",
-								"offer",
-								"opt",
-								"job"
+								"register",
+								"signin"
 							]
 						}
 					},
-					"response": []
-				},
-				{
-					"name": "Update Job",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
+					"response": [
+						{
+							"name": "SignInEmployer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"anshulgoel033@gmail.com\",\n    \"userpwd\":\"password\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{BASE-URL}}/v1/api/register/signin",
+									"protocol": "http",
+									"host": [
+										"{{BASE-URL}}"
+									],
+									"path": [
+										"v1",
+										"api",
+										"register",
+										"signin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
 								{
-									"key": "username",
-									"value": "employer@gmail.com",
-									"type": "string"
+									"key": "Vary",
+									"value": "Origin"
 								},
 								{
-									"key": "password",
-									"value": "password",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": " {\n        \"id\": 7,\n        \"name\": \"Job Offer By Amazon\",\n        \"company\": \"Amazon\",\n        \"offerReceivedDate\": \"2022-10-20\",\n        \"joiningDate\": \"2022-11-20\",\n        \"jobTitle\": \"Support\",\n        \"ctc\": \"12L\",\n        \"panNumber\": \"AQQPA6292G\"\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/offer/opt/job",
-							"protocol": "http",
-							"host": [
-								"{{BASE-URL}}"
-							],
-							"path": [
-								"v1",
-								"api",
-								"offer",
-								"opt",
-								"job"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Support",
-			"item": []
-		},
-		{
-			"name": "JobOffer",
-			"item": [
-				{
-					"name": "Get Jobs",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "username",
-									"value": "support@gmail.com",
-									"type": "string"
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
 								},
 								{
-									"key": "password",
-									"value": "password",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/offer/view/all",
-							"protocol": "http",
-							"host": [
-								"{{BASE-URL}}"
-							],
-							"path": [
-								"v1",
-								"api",
-								"offer",
-								"view",
-								"all"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Jobs by Id",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "username",
-									"value": "admin@gmail.com",
-									"type": "string"
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
 								},
 								{
-									"key": "password",
-									"value": "password",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/offer/opt/job/61",
-							"protocol": "http",
-							"host": [
-								"{{BASE-URL}}"
-							],
-							"path": [
-								"v1",
-								"api",
-								"offer",
-								"opt",
-								"job",
-								"61"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Jobs by Pan Number Copy",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "username",
-									"value": "employer@gmail.com",
-									"type": "string"
+									"key": "Content-Type",
+									"value": "application/json"
 								},
 								{
-									"key": "password",
-									"value": "password",
-									"type": "string"
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Dec 2022 07:00:31 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
 								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/offer/view/job/AQQPA6292G",
-							"protocol": "http",
-							"host": [
-								"{{BASE-URL}}"
 							],
-							"path": [
-								"v1",
-								"api",
-								"offer",
-								"view",
-								"job",
-								"AQQPA6292G"
-							]
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnNodWxnb2VsMDMzQGdtYWlsLmNvbSIsInJvbGVzIjpbIkVNUExPWUVSIl0sImlhdCI6MTY2OTk2NDQzMCwiZXhwIjoxNjY5OTY1NjMwfQ.co4eu4F2rdSXgCgNcDIk6HTvALmzFOQRu-p7TBI54Hji3YwevX8cT7IekC2-8uw6z82XVEY63fiEU2dssFMjIw\"\n}"
 						}
-					},
-					"response": []
+					]
 				},
 				{
 					"name": "Post Job",
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": [
+							"type": "bearer",
+							"bearer": [
 								{
-									"key": "username",
-									"value": "employer@gmail.com",
-									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "password",
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnNodWxnb2VsMDMzQGdtYWlsLmNvbSIsInJvbGVzIjpbIkVNUExPWUVSIl0sImlhdCI6MTY2OTg5MDkzMywiZXhwIjoxNjY5ODkyMTMzfQ.1RqO2YZ7frj5e1OYZqTX4dtqnoJiqmRTsmsNYLhjjBValUJ1epz47dE2W-2mhB-vjxCsFniQ3M8VKWPAYEAR7w",
 									"type": "string"
 								}
 							]
@@ -627,7 +239,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": 0,\n  \"name\": \"MyJob\",\n  \"company\": \"Amazon\",\n  \"offerReceivedDate\": \"2022-10-20\",\n  \"joiningDate\": \"2022-11-20\",\n  \"jobTitle\": \"Support\",\n  \"ctc\": \"12L\",\n  \"panNumber\": \"AQQPA6292G\"\n}",
+							"raw": "{\n    \"ern\": \"anshul\",\n    \"employerOrgName\": \"Amazon\",\n    \"employerEmail\": \"anshulgoel032@google.com\",\n    \"joiningDate\": \"2024-12-11\",\n    \"employmentType\": \"JOB\",\n    \"tin\": \"AQQPA6292G\",\n    \"employeeCountry\": \"India\",\n    \"updatedBy\": \"anshulgoel032@naukri.com\",\n    \"enableEmploymentOfferMonitoring\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -635,7 +247,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/offer/opt/job",
+							"raw": "http://{{BASE-URL}}/v1/api/employer/employmentoffer",
 							"protocol": "http",
 							"host": [
 								"{{BASE-URL}}"
@@ -643,16 +255,108 @@
 							"path": [
 								"v1",
 								"api",
-								"offer",
-								"opt",
-								"job"
+								"employer",
+								"employmentoffer"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Post Job",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ern\": \"anshul\",\n    \"employerOrgName\": \"Amazon\",\n    \"employerEmail\": \"anshulgoel032@google.com\",\n    \"joiningDate\": \"2024-12-11\",\n    \"employmentType\": \"JOB\",\n    \"tin\": \"AQQPA6292G\",\n    \"employeeCountry\": \"India\",\n    \"updatedBy\": \"anshulgoel032@naukri.com\",\n    \"enableEmploymentOfferMonitoring\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{BASE-URL}}/v1/api/employer/employmentoffer",
+									"protocol": "http",
+									"host": [
+										"{{BASE-URL}}"
+									],
+									"path": [
+										"v1",
+										"api",
+										"employer",
+										"employmentoffer"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Dec 2022 07:00:41 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"offerId\": 6,\n    \"ern\": \"anshul\",\n    \"employeeCountry\": \"India\",\n    \"tin\": \"AQQPA6292G\",\n    \"offerUpdatedOn\": \"2022-12-02\",\n    \"joiningDate\": \"2024-12-11\",\n    \"employmentType\": \"JOB\",\n    \"employerOrgName\": \"Amazon\",\n    \"employerEmail\": \"anshulgoel032@google.com\",\n    \"updatedBy\": \"employer@gmail.com\",\n    \"enableEmploymentOfferMonitoring\": true,\n    \"employmentOfferStatus\": \"ACTIVE\"\n}"
+						}
+					]
 				},
 				{
-					"name": "Update Job",
+					"name": "Get Jobs by Tin Number",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -669,19 +373,10 @@
 								}
 							]
 						},
-						"method": "PUT",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"id\": 7,\n  \"name\": \"MyJob\",\n  \"company\": \"Google\",\n  \"offerReceivedDate\": \"2022-10-20\",\n  \"joiningDate\": \"2022-11-20\",\n  \"jobTitle\": \"HR\",\n  \"ctc\": \"12L\",\n  \"panNumber\": \"AIIPA5182F\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/offer/opt/job",
+							"raw": "http://{{BASE-URL}}/v1/api/employer/employmentoffer/AQQPA6292G",
 							"protocol": "http",
 							"host": [
 								"{{BASE-URL}}"
@@ -689,15 +384,115 @@
 							"path": [
 								"v1",
 								"api",
-								"offer",
-								"opt",
-								"job"
+								"employer",
+								"employmentoffer",
+								"AQQPA6292G"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Jobs by Tin Number",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"offerId\":\"\",\r\n\t\"ern\":\"anshul\",\r\n\t\"tin\":\"AQQPA6292G\",\r\n\t\"employeeCountry\":\"INDIA\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{BASE-URL}}/v1/api/employer/employmentoffer/search",
+									"protocol": "http",
+									"host": [
+										"{{BASE-URL}}"
+									],
+									"path": [
+										"v1",
+										"api",
+										"employer",
+										"employmentoffer",
+										"search"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Dec 2022 07:01:03 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"offerId\": 6,\n        \"ern\": \"anshul\",\n        \"employeeCountry\": \"India\",\n        \"tin\": \"AQQPA6292G\",\n        \"offerUpdatedOn\": \"2022-12-02\",\n        \"joiningDate\": \"2024-12-11\",\n        \"employmentType\": \"JOB\",\n        \"employerOrgName\": \"Amazon\",\n        \"employerEmail\": \"anshulgoel032@google.com\",\n        \"updatedBy\": \"employer@gmail.com\",\n        \"enableEmploymentOfferMonitoring\": true,\n        \"employmentOfferStatus\": \"ACTIVE\"\n    }\n]"
+						}
+					]
 				}
 			]
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE-URL",
+			"value": "localhost:8080"
 		}
 	]
 }

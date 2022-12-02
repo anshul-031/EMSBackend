@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 public class JobOfferResponse {
-    private Long id;
+    private Long offerId;
     private String ern;
     private String employeeCountry;
     private String tin;

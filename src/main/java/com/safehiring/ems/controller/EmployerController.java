@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.safehiring.ems.api.EmployerAPI;
 import com.safehiring.ems.exception.InvalidJobOfferException;
 import com.safehiring.ems.model.request.JobOfferRequest;
+import com.safehiring.ems.model.request.SearchJobOfferRequest;
 import com.safehiring.ems.model.response.JobOfferResponse;
 import com.safehiring.ems.service.JobOfferService;
 import lombok.Data;
@@ -34,9 +35,9 @@ public class EmployerController implements EmployerAPI {
 	}
 
 	@Override
-	public ResponseEntity<List<JobOfferResponse>> getAllEmploymentOffers(final String tin) {
+	public ResponseEntity<List<JobOfferResponse>> getAllEmploymentOffers(final SearchJobOfferRequest searchJobOfferRequest) {
 		try {
-			return new ResponseEntity<>(this.jobOfferService.getAllJobsByTin(tin), HttpStatus.OK);
+			return new ResponseEntity<>(this.jobOfferService.getAllJobsByTin(searchJobOfferRequest.getTin()), HttpStatus.OK);
 		} catch (final InvalidJobOfferException e) {
 			return new ResponseEntity<>(Collections.emptyList(), HttpStatus.NO_CONTENT);
 		}

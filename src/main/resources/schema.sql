@@ -27,21 +27,21 @@ CREATE TABLE IF NOT EXISTS `PRINCIPAL_GROUP`
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 
-CREATE TABLE IF NOT EXISTS `JOB_OFFER`
+CREATE TABLE IF NOT EXISTS `EMPLOYMENT_OFFER`
 (
-    `id`                  bigint NOT NULL AUTO_INCREMENT,
-    `ern`                 varchar(255) DEFAULT NULL,
-    `employee_country`    varchar(255) DEFAULT NULL,
-    `tin`                 varchar(255) DEFAULT NULL,
+    `offer_id`                      bigint NOT NULL AUTO_INCREMENT,
+    `ern`                           varchar(255) DEFAULT NULL,
+    `employee_country`              varchar(255) DEFAULT NULL,
+    `tin`                           varchar(255) DEFAULT NULL,
     `employer_org_name`             varchar(255) DEFAULT NULL,
-    `employer_email`           varchar(255) DEFAULT NULL,
-    `offer_updated_on`     varchar(255) DEFAULT NULL,
-    `joining_date`        varchar(255) DEFAULT NULL,
-    `employment_type`                varchar(255) DEFAULT NULL,
-    `updated_by`  varchar(255) DEFAULT NULL,
+    `employer_email`                varchar(255) DEFAULT NULL,
+    `offer_updated_on`              DATE NOT NULL,
+    `joining_date`                  DATE NOT NULL,
+    `employment_type`               varchar(255) DEFAULT NULL,
+    `updated_by`                    varchar(255) DEFAULT NULL,
     `enable_employment_offer_monitoring` BIT DEFAULT 0,
-    `employment_offer_status` varchar(255) DEFAULT NULL,
-    PRIMARY KEY (`id`)
+    `employment_offer_status`       BIT(8) NOT NULL,
+    PRIMARY KEY (`offer_id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 6
   DEFAULT CHARSET = utf8mb4

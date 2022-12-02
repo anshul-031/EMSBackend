@@ -21,6 +21,13 @@ import lombok.Data;
 @Data
 public class JobOfferServiceImpl implements JobOfferService {
 
+    /***
+     * TO DO Least Priority
+     * Add a Schedular which runs every 24 hours updating All "ACTIVE" Employment Offer to "EXPIRED" whose Joining
+     * Date has passed.
+     *
+     */
+
     private final JobOfferRepository jobOfferRepository;
 
     @Override
@@ -36,22 +43,39 @@ public class JobOfferServiceImpl implements JobOfferService {
     @Override
     public JobOfferResponse saveJobOffer(final JobOfferRequest jobOfferRequest) {
         /***
-         * TO DO
+         * TO DO High Priority
          * Check if there is already an "ACTIVE" Employment Offer by the current Employer to the candidate, throw an
          * exception, "Employment Offer already exist by the {{CurrentEmployer}}, please use the update API to update
          * the employment offer"
+         *
+         * Algorithm:-
+         * currentEmployerEmail=getCurrentUser();
+         * ResultSet= executeSQL("SELECT * FROM safehiring.job_offer where updated_by={{currentEmployermail}} AND
+         * employment_offer_status={{EmploymentOfferStatus.ACTIVE}} AND joining_date>=current_date();")
+         * if(resultSet.length()>0){
+         *   throw new Exception("Employment Offer Already Exist. Please use Update API to update Employment offer")
+         * }
          */
         final JobOffer jobOffer = new JobOffer();
         BeanUtils.copyProperties(jobOfferRequest, jobOffer);
-        jobOffer.setId(null);
+        jobOffer.setOfferId(null);
         jobOffer.setEmploymentOfferStatus(EmploymentOfferStatus.ACTIVE);
         jobOffer.setUpdatedBy("employer@gmail.com"); //TO DO fetch Username from JWT token
         jobOffer.setOfferUpdatedOn(LocalDate.now());
         this.jobOfferRepository.save(jobOffer);
         /***
-         * TO DO
+         * TO DO Least Priority
          * Check if the new Employee hired already has another 'ACTIVE' Employment offer, send other previous employer
          * who have 'ACTIVE' employment offer, an email intimation that the candidate received a new offer
+         *
+         *
+         * Algorithm:-
+         * currentEmployerEmail=getCurrentUser();
+         * ResultSet= executeSQL("SELECT * FROM safehiring.job_offer where updated_by!={{currentEmployermail}} AND
+         * employment_offer_status={{EmploymentOfferStatus.ACTIVE}} AND joining_date>=current_date();")
+         * for (employmentOffer in ResultSet){
+         * sendEMailIntimation(employmentOffer.getEmployerEmail())
+         * }
          */
         return this.populateJobOfferResponse(jobOffer);
     }

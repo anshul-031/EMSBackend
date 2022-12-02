@@ -82,7 +82,7 @@ public class RegistrationController {
                     new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getUserpwd()));
         } catch (final DisabledException e) {
             /***
-             * TO DO PRIORITY 0
+             * TO DO VERY HIGH PRIORITY
              * DisabledException not working. That means If a user is inactive, Still we are not geeting this
              * DisabledException error
              */

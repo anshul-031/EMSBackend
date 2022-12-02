@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 
 import org.hibernate.Hibernate;
 
@@ -20,7 +21,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "JOB_OFFER")
+@Table(name = "EMPLOYMENT_OFFER")
 @Getter
 @Setter
 @ToString
@@ -28,17 +29,19 @@ import lombok.ToString;
 public class JobOffer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+    @Column(name = "offerId", nullable = false)
+    private Long offerId;
     private String ern;
     private String employeeCountry;
     private String tin;
     private EmploymentType employmentType;
     private String employerOrgName;
+    @Email
     private String employerEmail;
     private LocalDate offerUpdatedOn;
     private LocalDate joiningDate;
     private Boolean enableEmploymentOfferMonitoring;
+    @Email
     private String updatedBy;
     private EmploymentOfferStatus employmentOfferStatus;
 
@@ -52,7 +55,7 @@ public class JobOffer {
             return false;
         }
         final JobOffer jobOffer = (JobOffer) o;
-        return this.id != null && Objects.equals(this.id, jobOffer.id);
+        return this.offerId != null && Objects.equals(this.offerId, jobOffer.offerId);
     }
 
     @Override
