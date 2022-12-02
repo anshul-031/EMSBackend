@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 
 import org.hibernate.Hibernate;
 
@@ -35,10 +36,12 @@ public class JobOffer {
     private String tin;
     private EmploymentType employmentType;
     private String employerOrgName;
+    @Email
     private String employerEmail;
     private LocalDate offerUpdatedOn;
     private LocalDate joiningDate;
     private Boolean enableEmploymentOfferMonitoring;
+    @Email
     private String updatedBy;
     private EmploymentOfferStatus employmentOfferStatus;
 
