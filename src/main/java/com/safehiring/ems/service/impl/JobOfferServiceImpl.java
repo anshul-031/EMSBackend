@@ -40,6 +40,14 @@ public class JobOfferServiceImpl implements JobOfferService {
          * Check if there is already an "ACTIVE" Employment Offer by the current Employer to the candidate, throw an
          * exception, "Employment Offer already exist by the {{CurrentEmployer}}, please use the update API to update
          * the employment offer"
+         *
+         * Algorithm:-
+         * currentEmployerEmail=getCurrentUser();
+         * ResultSet= executeSQL("SELECT * FROM safehiring.job_offer where updated_by={{currentEmployermail}} AND
+         * employment_offer_status={{EmploymentOfferStatus.ACTIVE}} AND joining_date>=current_date();")
+         * if(resultSet.length()>0){
+         *   throw new Exception("Employment Offer Already Exist. Please use Update API to update Employment offer")
+         * }
          */
         final JobOffer jobOffer = new JobOffer();
         BeanUtils.copyProperties(jobOfferRequest, jobOffer);
@@ -52,6 +60,15 @@ public class JobOfferServiceImpl implements JobOfferService {
          * TO DO Least Priority
          * Check if the new Employee hired already has another 'ACTIVE' Employment offer, send other previous employer
          * who have 'ACTIVE' employment offer, an email intimation that the candidate received a new offer
+         *
+         *
+         * Algorithm:-
+         * currentEmployerEmail=getCurrentUser();
+         * ResultSet= executeSQL("SELECT * FROM safehiring.job_offer where updated_by!={{currentEmployermail}} AND
+         * employment_offer_status={{EmploymentOfferStatus.ACTIVE}} AND joining_date>=current_date();")
+         * for (employmentOffer in ResultSet){
+         * sendEMailIntimation(employmentOffer.getEmployerEmail())
+         * }
          */
         return this.populateJobOfferResponse(jobOffer);
     }
