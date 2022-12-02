@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `JOB_OFFER`
     `employment_type`               varchar(255) DEFAULT NULL,
     `updated_by`                    varchar(255) DEFAULT NULL,
     `enable_employment_offer_monitoring` BIT DEFAULT 0,
-    `employment_offer_status`       varchar(255) DEFAULT NULL,
+    `employment_offer_status`       BIT(8) NOT NULL,
     PRIMARY KEY (`offer_id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 6
