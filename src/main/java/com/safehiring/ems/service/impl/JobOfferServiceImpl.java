@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.safehiring.ems.exception.EmsException;
@@ -56,11 +59,15 @@ public class JobOfferServiceImpl implements JobOfferService {
          *   throw new Exception("Employment Offer Already Exist. Please use Update API to update Employment offer")
          * }
          */
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        final UserDetails userDetails = (UserDetails) auth.getPrincipal();
+        String userName  = userDetails.getUsername();
+        
         final JobOffer jobOffer = new JobOffer();
         BeanUtils.copyProperties(jobOfferRequest, jobOffer);
         jobOffer.setOfferId(null);
         jobOffer.setEmploymentOfferStatus(EmploymentOfferStatus.ACTIVE);
-        jobOffer.setUpdatedBy("employer@gmail.com"); //TO DO fetch Username from JWT token
+        jobOffer.setUpdatedBy(userName);
         jobOffer.setOfferUpdatedOn(LocalDate.now());
         this.jobOfferRepository.save(jobOffer);
         /***
