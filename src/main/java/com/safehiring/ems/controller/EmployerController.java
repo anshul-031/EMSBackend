@@ -53,4 +53,9 @@ public class EmployerController implements EmployerAPI {
 		return null;
 	}
 
+	@Override
+	public ResponseEntity<List<JobOfferResponse>> getEmploymentOffersByTin(String tin) {
+		return new ResponseEntity<>(this.jobOfferService.getAllJobsByTin(tin), HttpStatus.OK);
+	}
+
 }
