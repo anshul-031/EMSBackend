@@ -50,7 +50,9 @@ public class EmployerController implements EmployerAPI {
 		//2. Fetch the Employer Details like employerEmail.
 		//2. Search the respective employers offers by employermail & tim number
 		//3. Update the respective fields.
-		return null;
+
+		JobOfferResponse jobOfferResponse = this.jobOfferService.updateJobOffer(jobOfferRequest);
+		return new ResponseEntity<>(jobOfferResponse, HttpStatus.OK);
 	}
 
 	@Override
