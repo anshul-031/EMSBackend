@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\":\"anshulgoel033@gmail.com\",\n    \"password\":\"password\",\n    \"website\":\"http://www.google.com\",\n    \"mobile\":123456789,\n    \"orgName\":\"Facebook\",\n    \"country\":\"India\",\n    \"referredBy\":\"anshulgoel0999@gmail.com\"\n}",
+							"raw": "{\n    \"email\":\"anshulgoel034@gmail.com\",\n    \"password\":\"password\",\n    \"website\":\"http://www.google.com\",\n    \"mobile\":123456789,\n    \"orgName\":\"Facebook\",\n    \"country\":\"India\",\n    \"referredBy\":\"anshulgoel0999@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -130,7 +130,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\":\"anshulgoel034@gmail.com\",\n    \"userpwd\":\"{bcrypt}$2a$10$p4V2tmFjlkK2G7Rge5sbaeaF4ug5BReQA.tyfrKzQ5DZc3iCzpjYO\"\n}",
+							"raw": "{\n    \"username\":\"anshulgoel034@gmail.com\",\n    \"userpwd\":\"password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -230,7 +230,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnNodWxnb2VsMDMzQGdtYWlsLmNvbSIsInJvbGVzIjpbIkVNUExPWUVSIl0sImlhdCI6MTY2OTg5MDkzMywiZXhwIjoxNjY5ODkyMTMzfQ.1RqO2YZ7frj5e1OYZqTX4dtqnoJiqmRTsmsNYLhjjBValUJ1epz47dE2W-2mhB-vjxCsFniQ3M8VKWPAYEAR7w",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnNodWxnb2VsMDM0QGdtYWlsLmNvbSIsInJvbGVzIjpbIkVNUExPWUVSIl0sImlhdCI6MTY3MDc3OTU2MSwiZXhwIjoxNjcwNzgwNzYxfQ.bj-BZqLpLXkn2-G_EvH_N3ZdVQOeSXu3dIgFvqXVNfTLKHEoEy1irwI0aRnP-uCd407iMZI-4jNadVEfx_YJ-g",
 									"type": "string"
 								}
 							]
@@ -357,26 +357,33 @@
 				},
 				{
 					"name": "Get Jobs by Tin Number",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": [
+							"type": "bearer",
+							"bearer": [
 								{
-									"key": "username",
-									"value": "employer@gmail.com",
-									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "password",
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnNodWxnb2VsMDM0QGdtYWlsLmNvbSIsInJvbGVzIjpbIkVNUExPWUVSIl0sImlhdCI6MTY3MDc3OTU2MSwiZXhwIjoxNjcwNzgwNzYxfQ.bj-BZqLpLXkn2-G_EvH_N3ZdVQOeSXu3dIgFvqXVNfTLKHEoEy1irwI0aRnP-uCd407iMZI-4jNadVEfx_YJ-g",
 									"type": "string"
 								}
 							]
 						},
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"offerId\":\"\",\r\n\t\"ern\":\"anshul\",\r\n\t\"tin\":\"AQQPA6292G\",\r\n\t\"employeeCountry\":\"INDIA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/employer/employmentoffer/AQQPA6292G",
+							"raw": "http://{{BASE-URL}}/v1/api/employer/employmentoffer/search",
 							"protocol": "http",
 							"host": [
 								"{{BASE-URL}}"
@@ -386,7 +393,7 @@
 								"api",
 								"employer",
 								"employmentoffer",
-								"AQQPA6292G"
+								"search"
 							]
 						}
 					},
