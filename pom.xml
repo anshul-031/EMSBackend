@@ -15,6 +15,8 @@
     <description>Safe hiring EMS</description>
     <properties>
         <java.version>11</java.version>
+        <sonar.organization>ems</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
     <dependencies>
         <dependency>
