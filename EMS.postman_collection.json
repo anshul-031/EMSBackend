@@ -360,7 +360,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnNodWxnb2VsMDMyQGdtYWlsLmNvbSIsInJvbGVzIjpbIkVNUExPWUVSIl0sImlhdCI6MTY3MDkyMjUyNSwiZXhwIjoxNjcwOTIzNzI1fQ.r0IeeWnzn-NI6iGkORgLyDeRfFm0GCwy_Xndqd25UbJ5Mo9XQbzkR7nouTXJehPQUD6_XIf39-2QKnKfn5HW6w",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnNodWxnb2VsMDMyQGdtYWlsLmNvbSIsInJvbGVzIjpbIkVNUExPWUVSIl0sImlhdCI6MTY3MDkyMzc0MCwiZXhwIjoxNjcwOTI0OTQwfQ.saJZjR5lemb7FWwtO_3CW4wJf3ns_HC1Ynb5mKUv_SNfqt1CGF-GzLUJeotyvTcWf7ud_GdQLCUjT9sgRHYy5g",
 									"type": "string"
 								}
 							]
@@ -368,7 +368,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE-URL}}/v1/api/employer/employmentoffer/search?tin=AQQPA6292G&employeecountry=India",
+							"raw": "{{BASE-URL}}/v1/api/employer/employmentoffer/search?tin=AQQPA6292G&employeecountry=Indiaa",
 							"host": [
 								"{{BASE-URL}}"
 							],
@@ -386,7 +386,7 @@
 								},
 								{
 									"key": "employeecountry",
-									"value": "India"
+									"value": "Indiaa"
 								}
 							]
 						}

@@ -34,8 +34,8 @@ public class EmployerController implements EmployerAPI {
 	}
 
 	@Override
-	public ResponseEntity<List<JobOfferResponse>> getAllEmploymentOffers(final @Valid String tin, final @Valid String employeecountry) {
-		if (employeecountry.equalsIgnoreCase("India")) {
+	public ResponseEntity<List<JobOfferResponse>> getAllEmploymentOffers(final String tin, final String employeecountry) {
+		if (!employeecountry.equalsIgnoreCase("India")) {
 			throw new IllegalArgumentException("Country not Supported as of now");
 		}
 		try {

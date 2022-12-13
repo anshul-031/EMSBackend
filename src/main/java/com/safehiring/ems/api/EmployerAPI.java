@@ -24,8 +24,8 @@ public interface EmployerAPI {
 	ResponseEntity<JobOfferResponse> createJobOffers(@RequestBody @Valid final JobOfferRequest jobOfferRequest);
 
 	@GetMapping(value = "/employmentoffer/search")
-	ResponseEntity<List<JobOfferResponse>> getAllEmploymentOffers(@RequestParam @Valid String tin,
-																  @RequestParam @Valid String employeecountry);
+	ResponseEntity<List<JobOfferResponse>> getAllEmploymentOffers(@RequestParam String tin,
+																  @RequestParam String employeecountry);
 
 	@PutMapping(value = "/employmentoffer", produces = { "application/json" }, consumes = { "application/json" })
 	ResponseEntity<JobOfferResponse> updateEmploymentOffers(@RequestBody @Valid final JobOfferRequest jobOfferRequest);
