@@ -40,7 +40,7 @@ public class SecureToken {
     @Column(updatable = false)
     private Timestamp timestamp;
 
-    @Column(updatable = false)
+    @Column(updatable = false, name="expire_at")
     @Basic(optional = false)
     private LocalDateTime expireAt;
 

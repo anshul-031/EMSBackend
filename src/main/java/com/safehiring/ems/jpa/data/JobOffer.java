@@ -29,20 +29,30 @@ import lombok.ToString;
 public class JobOffer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "offerId", nullable = false)
+    @Column(name = "offer_Id", nullable = false)
     private Long offerId;
     private String ern;
+    @Column(name="employee_country")
     private String employeeCountry;
     private String tin;
+    @Column(name="employment_type")
     private EmploymentType employmentType;
+    @Column(name="employer_org_name")
     private String employerOrgName;
     @Email
+    @Column(name="employer_email")
     private String employerEmail;
+
+    @Column(name="offer_updated_on")
     private LocalDate offerUpdatedOn;
+    @Column(name="joining_date")
     private LocalDate joiningDate;
+    @Column(name="enable_employment_offer_monitoring")
     private Boolean enableEmploymentOfferMonitoring;
     @Email
+    @Column(name="updated_by")
     private String updatedBy;
+    @Column(name="employment_offer_status")
     private EmploymentOfferStatus employmentOfferStatus;
 
 

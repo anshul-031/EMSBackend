@@ -45,6 +45,7 @@ public class EmsExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(Exception.class)
 	protected ResponseEntity<Object> globalException(final Exception ex, final WebRequest request) {
+		ex.printStackTrace();
 		log.error(ex.getLocalizedMessage());
 		return this.handleExceptionInternal(ex, ex.getLocalizedMessage(), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}

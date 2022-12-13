@@ -75,6 +75,11 @@ public class RegistrationController {
         return "Employer verification successful";
     }
 
+    @GetMapping("/health")
+    public String health() throws InvalidTokenException {
+        return "Ok";
+    }
+
     @PostMapping("/signin")
     public JwtResponse generateJwtToken(@RequestBody final JwtRequest jwtRequest) {
         try {
