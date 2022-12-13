@@ -15,8 +15,8 @@ public class PaymentGatewayFactory {
     public PaymentGateway getPaymentGateway(PaymentGatewayEnum paymentGatewayEnum) {
 
         if (PaymentGatewayEnum.RAZORPAY.equals(paymentGatewayEnum)) {
-            return new RazorpayPayment();
+            return new RazorpayPaymentGateway();
         }
-        return new RazorpayPayment();
+        return new RazorpayPaymentGateway();
     }
 }

@@ -1,5 +1,6 @@
 package com.safehiring.ems.service.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.razorpay.RazorpayException;
 import com.safehiring.ems.model.PaymentGatewayEnum;
 import com.safehiring.ems.model.request.PaymentRequest;
@@ -17,7 +18,11 @@ public class PaymentServiceImpl implements PaymentService {
 
         PaymentGatewayFactory paymentGatewayFactory = new PaymentGatewayFactory();
         PaymentGateway paymentGateway = paymentGatewayFactory.getPaymentGateway(PaymentGatewayEnum.RAZORPAY);
-        return paymentGateway.placeOrder(paymentRequest);
+        try {
+            return paymentGateway.placeOrder(paymentRequest);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }

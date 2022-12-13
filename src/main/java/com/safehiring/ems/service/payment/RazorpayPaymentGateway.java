@@ -1,5 +1,6 @@
 package com.safehiring.ems.service.payment;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.razorpay.Order;
 import com.razorpay.RazorpayClient;
@@ -9,9 +10,9 @@ import com.safehiring.ems.model.request.PaymentRequest;
 import com.safehiring.ems.model.response.PaymentResponse;
 import org.json.JSONObject;
 
-public class RazorpayPayment implements PaymentGateway {
+public class RazorpayPaymentGateway implements PaymentGateway {
 
-    public PaymentResponse placeOrder(PaymentRequest paymentRequest) throws RazorpayException {
+    public PaymentResponse placeOrder(PaymentRequest paymentRequest) throws RazorpayException, JsonProcessingException {
 
             RazorpayClient razorpay = new RazorpayClient("rzp_test_BpeSJ7UdmHAXcP", "28AibsX10gwGn5yLEuYiTAXi");
 
@@ -22,9 +23,12 @@ public class RazorpayPayment implements PaymentGateway {
 
             Order order = razorpay.orders.create(orderRequest);
 
-            OrderVo orderVo = new ObjectMapper().convertValue(order.toJson(), OrderVo.class);
+            OrderVo orderVo = new ObjectMapper().readValue(order.toString(), OrderVo.class);
 
-            return null;
+            PaymentResponse paymentResponse = new PaymentResponse();
+            paymentResponse.setOrderId(orderVo.getId());
+            paymentResponse.setStatus(orderVo.getStatus());
+            return paymentResponse;
     }
 
 }

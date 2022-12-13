@@ -1,5 +1,6 @@
 package com.safehiring.ems.controller;
 
+import com.razorpay.RazorpayException;
 import com.safehiring.ems.api.PaymentAPI;
 import com.safehiring.ems.model.request.PaymentRequest;
 import com.safehiring.ems.model.response.PaymentResponse;
@@ -18,12 +19,12 @@ public class PaymentController implements PaymentAPI {
     @Override
     public ResponseEntity placeOrder(PaymentRequest paymentRequest) {
 
+        PaymentResponse paymentResponse = null;
         try {
-            PaymentResponse paymentResponse = paymentService.placeOrder(paymentRequest);
-            return new ResponseEntity<PaymentResponse>(paymentResponse, HttpStatus.OK);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            paymentResponse = paymentService.placeOrder(paymentRequest);
+        } catch (RazorpayException e) {
+            throw new RuntimeException(e);
         }
-        return null;
+        return new ResponseEntity<PaymentResponse>(paymentResponse, HttpStatus.OK);
     }
 }

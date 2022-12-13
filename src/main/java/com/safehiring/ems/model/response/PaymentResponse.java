@@ -7,5 +7,5 @@ public class PaymentResponse {
 
     private String orderId;
 
-    private Boolean success;
+    private String status;
 }
