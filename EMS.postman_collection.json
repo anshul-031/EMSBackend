@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\":\"anshulgoel034@gmail.com\",\n    \"password\":\"password\",\n    \"website\":\"http://www.google.com\",\n    \"mobile\":123456789,\n    \"orgName\":\"Facebook\",\n    \"country\":\"India\",\n    \"referredBy\":\"anshulgoel0999@gmail.com\"\n}",
+							"raw": "{\n    \"email\":\"anshulgoel032@gmail.com\",\n    \"password\":\"password\",\n    \"website\":\"http://www.google.com\",\n    \"mobile\":123456789,\n    \"orgName\":\"Facebook\",\n    \"country\":\"India\",\n    \"referredBy\":\"anshulgoel0999@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -24,8 +24,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/register/employer",
-							"protocol": "http",
+							"raw": "{{BASE-URL}}/v1/api/register/employer",
 							"host": [
 								"{{BASE-URL}}"
 							],
@@ -130,7 +129,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\":\"anshulgoel034@gmail.com\",\n    \"userpwd\":\"password\"\n}",
+							"raw": "{\n    \"username\":\"anshulgoel032@gmail.com\",\n    \"userpwd\":\"password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -138,8 +137,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/register/signin",
-							"protocol": "http",
+							"raw": "{{BASE-URL}}/v1/api/register/signin",
 							"host": [
 								"{{BASE-URL}}"
 							],
@@ -230,7 +228,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnNodWxnb2VsMDM0QGdtYWlsLmNvbSIsInJvbGVzIjpbIkVNUExPWUVSIl0sImlhdCI6MTY3MDc3OTU2MSwiZXhwIjoxNjcwNzgwNzYxfQ.bj-BZqLpLXkn2-G_EvH_N3ZdVQOeSXu3dIgFvqXVNfTLKHEoEy1irwI0aRnP-uCd407iMZI-4jNadVEfx_YJ-g",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnNodWxnb2VsMDMyQGdtYWlsLmNvbSIsInJvbGVzIjpbIkVNUExPWUVSIl0sImlhdCI6MTY3MDkyMjUyNSwiZXhwIjoxNjcwOTIzNzI1fQ.r0IeeWnzn-NI6iGkORgLyDeRfFm0GCwy_Xndqd25UbJ5Mo9XQbzkR7nouTXJehPQUD6_XIf39-2QKnKfn5HW6w",
 									"type": "string"
 								}
 							]
@@ -247,8 +245,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/employer/employmentoffer",
-							"protocol": "http",
+							"raw": "{{BASE-URL}}/v1/api/employer/employmentoffer",
 							"host": [
 								"{{BASE-URL}}"
 							],
@@ -357,34 +354,21 @@
 				},
 				{
 					"name": "Get Jobs by Tin Number",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnNodWxnb2VsMDM0QGdtYWlsLmNvbSIsInJvbGVzIjpbIkVNUExPWUVSIl0sImlhdCI6MTY3MDc3OTU2MSwiZXhwIjoxNjcwNzgwNzYxfQ.bj-BZqLpLXkn2-G_EvH_N3ZdVQOeSXu3dIgFvqXVNfTLKHEoEy1irwI0aRnP-uCd407iMZI-4jNadVEfx_YJ-g",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnNodWxnb2VsMDMyQGdtYWlsLmNvbSIsInJvbGVzIjpbIkVNUExPWUVSIl0sImlhdCI6MTY3MDkyMjUyNSwiZXhwIjoxNjcwOTIzNzI1fQ.r0IeeWnzn-NI6iGkORgLyDeRfFm0GCwy_Xndqd25UbJ5Mo9XQbzkR7nouTXJehPQUD6_XIf39-2QKnKfn5HW6w",
 									"type": "string"
 								}
 							]
 						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"offerId\":\"\",\r\n\t\"ern\":\"anshul\",\r\n\t\"tin\":\"AQQPA6292G\",\r\n\t\"employeeCountry\":\"INDIA\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://{{BASE-URL}}/v1/api/employer/employmentoffer/search",
-							"protocol": "http",
+							"raw": "{{BASE-URL}}/v1/api/employer/employmentoffer/search?tin=AQQPA6292G&employeecountry=India",
 							"host": [
 								"{{BASE-URL}}"
 							],
@@ -394,6 +378,16 @@
 								"employer",
 								"employmentoffer",
 								"search"
+							],
+							"query": [
+								{
+									"key": "tin",
+									"value": "AQQPA6292G"
+								},
+								{
+									"key": "employeecountry",
+									"value": "India"
+								}
 							]
 						}
 					},
@@ -496,10 +490,30 @@
 			]
 		}
 	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
 			"key": "BASE-URL",
-			"value": "localhost:8080"
+			"value": "http://safehiring-env.eba-xjfk2sc2.us-east-1.elasticbeanstalk.com"
 		}
 	]
 }
