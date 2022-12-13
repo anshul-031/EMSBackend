@@ -1,9 +1,9 @@
 package com.safehiring.ems.jpa.data;
 
 
-import lombok.Data;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
@@ -38,10 +38,13 @@ public class UserEntity {
     @Column(unique = true)
     private String email;
     private String password;
+    @Column(name = "org_name")
     private String orgName;
     private String website;
     private Long mobile;
+    @Column(name = "account_verified")
     private boolean accountVerified;
+    @Column(name = "referred_by")
     private String referredBy;
 
     @OneToMany(mappedBy = "user")
