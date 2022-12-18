@@ -6,6 +6,9 @@ import com.safehiring.ems.model.request.EmployerRegistrationRequest;
 
 public interface UserService {
     void register(final EmployerRegistrationRequest registrationRequest);
+    void updateUserGroup(final String userEmail, String userGroup);
+
+    UserEntity getUserByEmail(final String userEmail);
 
     boolean checkIfUserExists(final String email);
 

@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `USER`
     PRIMARY KEY (`id`),
     UNIQUE KEY `UK_ob8kqyqqgmefl0aco34akdtpe` (`email`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 11
+  AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `PRINCIPAL_GROUP`
     PRIMARY KEY (`id`),
     UNIQUE KEY `UK_mivgwei5gryhbnt5fsec4u3se` (`code`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 5
+  AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `EMPLOYMENT_OFFER`
     `employment_offer_status`       BIT(8) NOT NULL,
     PRIMARY KEY (`offer_id`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 6
+  AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `SECURE_TOKEN`
     KEY `FKdv1lktun3k4xuye9gb83xkv61` (`user_id`),
     CONSTRAINT `FKdv1lktun3k4xuye9gb83xkv61` FOREIGN KEY (`user_id`) REFERENCES `USER` (`id`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 20
+  AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 
@@ -74,6 +74,17 @@ CREATE TABLE IF NOT EXISTS `USER_GROUP`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
+
+CREATE TABLE IF NOT EXISTS `USER_ORDER` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(45) DEFAULT NULL,
+  `razorpay_payment_id` varchar(45) DEFAULT NULL,
+  `razorpay_order_id` varchar(45) DEFAULT NULL,
+  `razorpay_signature` varchar(150) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
 
 
 

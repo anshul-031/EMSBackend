@@ -2,6 +2,7 @@ package com.safehiring.ems.security;
 
 import javax.annotation.Resource;
 
+import com.safehiring.ems.constant.EmsConstants;
 import com.safehiring.ems.filter.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -57,11 +58,12 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
          http.cors().and().csrf().disable().authorizeRequests().antMatchers("/v1/api/register/**", "/v1/api/register/**").permitAll()
                 .antMatchers(HttpMethod.DELETE, "/v1/api/offer/opt/**").hasAnyAuthority("ADMIN")
-                .antMatchers("/v1/api/employer/**").hasAnyAuthority("EMPLOYER", "ADMIN")
-                .antMatchers("/v1/api/employee/**").hasAnyAuthority("EMPLOYEE", "ADMIN")
-                .antMatchers("/v1/api/offer/view/**").hasAnyAuthority("EMPLOYER", "ADMIN", "SUPPORT")
-                .antMatchers("/v1/api/offer/opt/**").hasAnyAuthority("EMPLOYER", "ADMIN")
-                .anyRequest()
+                .antMatchers("/v1/api/employer/**").hasAnyAuthority(EmsConstants.EMPLOYER_ROLE, EmsConstants.ADMIN_ROLE)
+                .antMatchers("/v1/api/employee/**").hasAnyAuthority(EmsConstants.EMPLOYEE_ROLE, EmsConstants.ADMIN_ROLE)
+                .antMatchers("/v1/api/offer/view/**").hasAnyAuthority(EmsConstants.EMPLOYER_ROLE, EmsConstants.ADMIN_ROLE, EmsConstants.SUPPORT_ROLE)
+                .antMatchers("/v1/api/offer/opt/**").hasAnyAuthority(EmsConstants.EMPLOYER_ROLE, EmsConstants.ADMIN_ROLE)
+                 .antMatchers("/v1/api/order/**").hasAnyAuthority(EmsConstants.EMPLOYER_UNPAID_ROLE, EmsConstants.EMPLOYEE_UNPAID_ROLE, EmsConstants.EMPLOYER_ROLE, EmsConstants.EMPLOYEE_ROLE)
+                 .anyRequest()
                 .authenticated().and().exceptionHandling().accessDeniedHandler(this.accessDeniedHandler())
                 .authenticationEntryPoint(authenticationEntryPoint).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

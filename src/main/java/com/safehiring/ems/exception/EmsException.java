@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class EmsException extends RuntimeException {
     public static final String INVALID_JOB_OFFER = "INVALID_JOB_OFFER";
+    public static final String INVALID_PAYMENT = "INVALID_PAYMENT";
     private String code;
     private String message;
 
