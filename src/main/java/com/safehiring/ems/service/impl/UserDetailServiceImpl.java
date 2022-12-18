@@ -29,7 +29,8 @@ public class UserDetailServiceImpl implements UserDetailsService {
         }
 
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
-                getAuthorities(user));
+                user.isAccountVerified(), true, true, true, getAuthorities(user));
+
     }
 
     private Collection<GrantedAuthority> getAuthorities(UserEntity user) {
