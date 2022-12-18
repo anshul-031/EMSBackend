@@ -55,7 +55,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers("/v1/api/register/**", "/v1/api/register/**").permitAll()
+         http.cors().and().csrf().disable().authorizeRequests().antMatchers("/v1/api/register/**", "/v1/api/register/**").permitAll()
                 .antMatchers(HttpMethod.DELETE, "/v1/api/offer/opt/**").hasAnyAuthority("ADMIN")
                 .antMatchers("/v1/api/employer/**").hasAnyAuthority("EMPLOYER", "ADMIN")
                 .antMatchers("/v1/api/employee/**").hasAnyAuthority("EMPLOYEE", "ADMIN")
