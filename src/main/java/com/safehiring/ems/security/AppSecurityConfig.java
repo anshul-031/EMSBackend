@@ -62,7 +62,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/v1/api/employee/**").hasAnyAuthority(EmsConstants.EMPLOYEE_ROLE, EmsConstants.ADMIN_ROLE)
                 .antMatchers("/v1/api/offer/view/**").hasAnyAuthority(EmsConstants.EMPLOYER_ROLE, EmsConstants.ADMIN_ROLE, EmsConstants.SUPPORT_ROLE)
                 .antMatchers("/v1/api/offer/opt/**").hasAnyAuthority(EmsConstants.EMPLOYER_ROLE, EmsConstants.ADMIN_ROLE)
-                 .antMatchers("/v1/api/order/**").hasAnyAuthority(EmsConstants.EMPLOYER_UNPAID_ROLE, EmsConstants.EMPLOYEE_UNPAID_ROLE)
+                 .antMatchers("/v1/api/order/**").hasAnyAuthority(EmsConstants.EMPLOYER_UNPAID_ROLE, EmsConstants.EMPLOYEE_UNPAID_ROLE, EmsConstants.EMPLOYER_ROLE, EmsConstants.EMPLOYEE_ROLE)
                  .anyRequest()
                 .authenticated().and().exceptionHandling().accessDeniedHandler(this.accessDeniedHandler())
                 .authenticationEntryPoint(authenticationEntryPoint).and()

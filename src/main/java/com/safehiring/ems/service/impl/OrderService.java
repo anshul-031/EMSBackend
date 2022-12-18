@@ -8,6 +8,7 @@ import com.safehiring.ems.jpa.repository.OrderRepository;
 import com.safehiring.ems.jpa.repository.UserRepository;
 import com.safehiring.ems.service.UserService;
 import com.safehiring.ems.util.Signature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,13 +32,13 @@ import java.util.stream.Collectors;
 @Service
 public class OrderService {
  
-
+    @Autowired
     private OrderRepository orderRepository;
 
-
+    @Autowired
     private UserRepository userRepository;
 
-
+    @Autowired
     private UserService userService;
  
     @Transactional
@@ -87,4 +88,28 @@ public class OrderService {
         return errorMsg;
     }
 
+    public static void main(String[] args) {
+        try {
+            Group groupUnpaid = new Group();
+            groupUnpaid.setCode(EmsConstants.EMPLOYEE_UNPAID_ROLE);
+
+            Group groupPaid = new Group();
+            groupPaid.setCode(EmsConstants.EMPLOYEE_ROLE);
+
+            Set<Group> userGroup = new HashSet<>();
+            userGroup.add(groupUnpaid);
+
+           userGroup.stream()
+                    .filter(obj->obj.getCode().equalsIgnoreCase(EmsConstants.EMPLOYEE_UNPAID_ROLE))
+                    .findFirst()
+                    .ifPresent(o->o.setCode(EmsConstants.EMPLOYER_ROLE));
+
+            userGroup.stream().forEach(group -> {
+                System.out.println(" grp = "+group.getCode());
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
