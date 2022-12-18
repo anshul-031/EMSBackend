@@ -2,6 +2,8 @@ INSERT IGNORE INTO `safehiring`.`PRINCIPAL_GROUP`(`id`,`code`,`name`)VALUES(1 ,'
 INSERT IGNORE INTO `safehiring`.`PRINCIPAL_GROUP`(`id`,`code`,`name`)VALUES(2 ,'EMPLOYER','Employer Group');
 INSERT IGNORE INTO `safehiring`.`PRINCIPAL_GROUP`(`id`,`code`,`name`)VALUES(3 ,'EMPLOYEE','Employee Group');
 INSERT IGNORE INTO `safehiring`.`PRINCIPAL_GROUP`(`id`,`code`,`name`)VALUES(4 ,'SUPPORT','Customer Support');
+INSERT IGNORE INTO `safehiring`.`PRINCIPAL_GROUP`(`id`,`code`,`name`)VALUES(5 ,'EMPLOYEE_UNPAID','Employee unpaid ');
+INSERT IGNORE INTO `safehiring`.`PRINCIPAL_GROUP`(`id`,`code`,`name`)VALUES(6 ,'EMPLOYER_UNPAID','Employer unpaid');
 
 INSERT IGNORE INTO `safehiring`.`USER`(`id`,`org_name`,`email`,`mobile`,`password`,`website`,`account_verified`)
 VALUES(1,'Safe Hiring','admin@gmail.com',123456781,'{bcrypt}$2a$10$9ZS4ZKkO3cHrwMWoXlEFd.UyQmIt4.NxW12nm9B/7PcbYcq/lLRH6','http://www.safehiring.com',true);

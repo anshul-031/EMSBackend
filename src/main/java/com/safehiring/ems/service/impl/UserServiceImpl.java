@@ -52,6 +52,20 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public void updateUserGroup(String userEmail, String code) {
+        UserEntity userEntity = userRepository.findByEmail(userEmail).orElseThrow(()-> new UsernameNotFoundException("User does not exists"));
+        final Group group = this.groupRepository.findByCode(code).orElseThrow(() -> new RuntimeException("Group " + code + " doesn't exists"));
+        userEntity.getUserGroups().clear();
+        userEntity.addUserGroups(group);
+    }
+
+    @Override
+    public UserEntity getUserByEmail(String userEmail) {
+        return  userRepository.findByEmail(userEmail).orElseThrow(()-> new UsernameNotFoundException("User does not exists"));
+
+    }
+
     private void updateUserGroup(final UserEntity entity, final String code) {
         final Group group = this.groupRepository.findByCode(code).orElseThrow(() -> new RuntimeException("Group " + code + " doesn't exists"));
         entity.addUserGroups(group);

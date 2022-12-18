@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import com.safehiring.ems.constant.EmsConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -45,7 +46,7 @@ public class RegistrationController {
 
     @PostMapping("/employer")
     public String registerEmployer(@RequestBody @Valid final EmployerRegistrationRequest registrationRequest) {
-        registrationRequest.setGroup("EMPLOYER");
+        registrationRequest.setGroup(EmsConstants.EMPLOYER_UNPAID_ROLE);
         this.userService.register(registrationRequest);
         return "Employer registration successful";
     }
@@ -53,7 +54,7 @@ public class RegistrationController {
     @PostMapping("/employee")
     public String registerEmployee(@RequestBody @Valid final EmployerRegistrationRequest registrationRequest) {
         log.info("Inside registration controller");
-        registrationRequest.setGroup("EMPLOYEE");
+        registrationRequest.setGroup(EmsConstants.EMPLOYEE_UNPAID_ROLE);
         this.userService.register(registrationRequest);
         return "Employee registration successful";
     }
@@ -95,6 +96,7 @@ public class RegistrationController {
         } catch (final BadCredentialsException e) {
             throw new InvalidUserException("Invalid Credentials");
         }
+
         final UserDetails userDetails = this.userAuthService.loadUserByUsername(jwtRequest.getUsername());
         final String username = userDetails.getUsername();
         final String userpwd = userDetails.getPassword();
