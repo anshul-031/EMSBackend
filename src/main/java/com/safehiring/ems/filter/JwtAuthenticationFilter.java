@@ -11,6 +11,8 @@ import com.safehiring.ems.exception.InvalidTokenException;
 import com.safehiring.ems.model.request.UserVo;
 import com.safehiring.ems.service.impl.UserDetailServiceImpl;
 import com.safehiring.ems.util.JwtUtil;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,13 +24,14 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 
 @Component
+@AllArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-	@Autowired
-	private JwtUtil jwtUtil;
 
-	@Autowired
-	private UserDetailServiceImpl userAuthService;
+	private final JwtUtil jwtUtil;
+
+
+	private final UserDetailServiceImpl userAuthService;
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)

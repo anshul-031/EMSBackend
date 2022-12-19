@@ -7,10 +7,12 @@ import javax.validation.Valid;
 
 import com.safehiring.ems.constant.EmsConstants;
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONObject;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -81,6 +83,17 @@ public class RegistrationController {
         return "Ok";
     }
 
+    @PostMapping("/webhook")
+    public String paymentWebHook(@RequestBody final String message) {
+        JSONObject jsonObject = new JSONObject(message);
+        System.out.println("Message from razor pay is "+message);
+        JSONObject paymentEntity = jsonObject.getJSONObject("payload").getJSONObject("payment").getJSONObject("entity");
+        String data = String.format(messageTemplate, jsonObject.get("event"), paymentEntity.get("order_id"),paymentEntity.get("status"), paymentEntity.get("id"), paymentEntity.getInt("amount")/100, paymentEntity.get("email"));
+        jwtUtil.sendSlackNotification(data);
+        return "Ok";
+
+    }
+
     @PostMapping("/signin")
     public JwtResponse generateJwtToken(@RequestBody final JwtRequest jwtRequest) {
         try {
@@ -100,7 +113,7 @@ public class RegistrationController {
         final UserDetails userDetails = this.userAuthService.loadUserByUsername(jwtRequest.getUsername());
         final String username = userDetails.getUsername();
         final String userpwd = userDetails.getPassword();
-        final Set<String> roles = userDetails.getAuthorities().stream().map(r -> r.getAuthority())
+        final Set<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toSet());
         final UserVo user = new UserVo();
         user.setUsername(username);
@@ -109,4 +122,6 @@ public class RegistrationController {
         final String token = this.jwtUtil.generateToken(user);
         return new JwtResponse(token);
     }
+
+    private static final String messageTemplate = "{\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"------------------------\\nYou have a new payment\"}},{\"type\":\"section\",\"fields\":[{\"type\":\"mrkdwn\",\"text\":\"*Event:*\\n`%s`\"},{\"type\":\"mrkdwn\",\"text\":\"*OrderId:*\\n`%s`\"},{\"type\":\"mrkdwn\",\"text\":\"*Status:*\\n`%s`\"},{\"type\":\"mrkdwn\",\"text\":\"*PaymeId:*\\n`%s`\"},{\"type\":\"mrkdwn\",\"text\":\"*Amount:*\\n`%s`\"},{\"type\":\"mrkdwn\",\"text\":\"*User:*\\n%s\"}]}]}";
 }
