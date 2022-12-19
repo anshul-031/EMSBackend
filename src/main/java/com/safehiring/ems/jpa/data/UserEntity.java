@@ -2,11 +2,8 @@ package com.safehiring.ems.jpa.data;
 
 
 
-import lombok.Getter;
+import lombok.*;
 
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import javax.persistence.CascadeType;

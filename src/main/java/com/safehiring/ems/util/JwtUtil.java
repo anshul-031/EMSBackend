@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import com.safehiring.ems.exception.InvalidTokenException;
 import com.safehiring.ems.model.request.UserVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,7 @@ import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 
 @Component
+@Slf4j
 public class JwtUtil {
 
 	@Value("${jwt.secret}")
@@ -33,12 +35,12 @@ public class JwtUtil {
 			Claims body = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
 			UserVo user = new UserVo();
 			user.setUsername(body.getSubject());
-			Set<String> roles = Arrays.asList(body.get("roles").toString().split(",")).stream().map(r -> new String(r))
+			Set<String> roles = Arrays.stream(body.get("roles").toString().split(",")).map(String::new)
 					.collect(Collectors.toSet());
 			user.setRoles(roles);
 			return user;
 		} catch (Exception e) {
-			System.out.println(e.getMessage() + " => " + e);
+			log.error("getUser from token is failed "+e.getMessage());
 		}
 		return null;
 	}

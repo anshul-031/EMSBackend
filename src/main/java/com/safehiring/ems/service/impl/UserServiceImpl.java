@@ -1,5 +1,8 @@
 package com.safehiring.ems.service.impl;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,9 +22,9 @@ import com.safehiring.ems.service.EmailService;
 import com.safehiring.ems.service.SecurityTokenService;
 import com.safehiring.ems.service.UserService;
 import com.safehiring.ems.service.context.AccountVerificationEmailContext;
-import lombok.Data;
 
 @Service
+@RequiredArgsConstructor
 @Data
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
@@ -54,6 +57,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUserGroup(String userEmail, String code) {
+        System.out.println("Updating "+userEmail+" Group = "+code);
         UserEntity userEntity = userRepository.findByEmail(userEmail).orElseThrow(()-> new UsernameNotFoundException("User does not exists"));
         final Group group = this.groupRepository.findByCode(code).orElseThrow(() -> new RuntimeException("Group " + code + " doesn't exists"));
         userEntity.getUserGroups().clear();

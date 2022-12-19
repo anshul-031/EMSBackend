@@ -11,6 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -100,7 +101,7 @@ public class RegistrationController {
         final UserDetails userDetails = this.userAuthService.loadUserByUsername(jwtRequest.getUsername());
         final String username = userDetails.getUsername();
         final String userpwd = userDetails.getPassword();
-        final Set<String> roles = userDetails.getAuthorities().stream().map(r -> r.getAuthority())
+        final Set<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toSet());
         final UserVo user = new UserVo();
         user.setUsername(username);
