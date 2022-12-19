@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS `USER`
     `password`         varchar(255) DEFAULT NULL,
     `website`          varchar(255) DEFAULT NULL,
     `account_verified` bit(1) NOT NULL,
-    `referred_by`          varchar(255) DEFAULT NULL,
+    `referred_by`      varchar(255) DEFAULT NULL,
+    `payment_verified` bit(1) NOT NULL,
     PRIMARY KEY (`id`),
     UNIQUE KEY `UK_ob8kqyqqgmefl0aco34akdtpe` (`email`)
 ) ENGINE = InnoDB
@@ -81,8 +82,15 @@ CREATE TABLE IF NOT EXISTS `USER_ORDER` (
   `razorpay_payment_id` varchar(45) DEFAULT NULL,
   `razorpay_order_id` varchar(45) DEFAULT NULL,
   `razorpay_signature` varchar(150) DEFAULT NULL,
+  `verified` bit(1) NOT NULL DEFAULT 0,
+  `created_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` VARCHAR(45) NOT NULL DEFAULT 'created',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
 
 
 

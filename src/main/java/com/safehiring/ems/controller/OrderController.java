@@ -7,11 +7,10 @@ import com.safehiring.ems.config.RazorPayClientConfig;
 import com.safehiring.ems.model.request.OrderRequest;
 import com.safehiring.ems.model.request.OrderResponse;
 import com.safehiring.ems.model.response.PaymentResponse;
-import com.safehiring.ems.service.impl.OrderService;
+import com.safehiring.ems.service.OrderService;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import lombok.Data;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,30 +34,32 @@ import javax.validation.Valid;
 @Slf4j
 public class OrderController {
  
-    private RazorpayClient client;
+    private final RazorpayClient client;
  
-    private RazorPayClientConfig razorPayClientConfig;
+    private final RazorPayClientConfig razorPayClientConfig;
  
-    @Autowired
-    private OrderService orderService;
 
-    @Autowired
-    public OrderController(RazorPayClientConfig razorpayClientConfig) throws RazorpayException {
+    private final OrderService orderService;
+
+
+    public OrderController(RazorPayClientConfig razorpayClientConfig, OrderService orderService) throws RazorpayException {
         this.razorPayClientConfig = razorpayClientConfig;
         this.client = new RazorpayClient(razorpayClientConfig.getKey(), razorpayClientConfig.getSecret());
+        this.orderService = orderService;
     }
 
 
     @PostMapping("/order")
     public ResponseEntity<?> createOrder(@RequestBody @Valid OrderRequest orderRequest) {
-        OrderResponse razorPay = null;
+        OrderResponse razorPay;
         try {
             // The transaction amount is expressed in the currency subunit, such
             // as paise (in case of INR)
             String amountInPaise = convertRupeeToPaise(orderRequest.getAmount());
             // Create an order in RazorPay and get the order id
             Order order = createRazorPayOrder(amountInPaise);
-            razorPay = getOrderResponse((String) order.get("id"), amountInPaise);
+
+            razorPay = getOrderResponse(order.get("id"), amountInPaise);
             // Save order in the database
             orderService.saveOrder(razorPay.getRazorpayOrderId());
         } catch (RazorpayException e) {

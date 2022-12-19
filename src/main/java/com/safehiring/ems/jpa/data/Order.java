@@ -1,6 +1,7 @@
 package com.safehiring.ems.jpa.data;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
@@ -28,7 +29,7 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
  
- @Column(name = "user_id")
+    @Column(name = "user_id")
     private Long userId;
 
     @Column(name = "razorpay_payment_id")
@@ -39,5 +40,16 @@ public class Order implements Serializable {
 
     @Column(name = "razorpay_signature")
     private String razorpaySignature;
+
+    @Column(name = "verified")
+    private boolean isVerified;
+
+    private String status;
+
+    @Column(name = "created_date")
+    private LocalDateTime createdDate;
+
+    @Column(name = "updated_date")
+    private LocalDateTime updatedDate;
  
 }

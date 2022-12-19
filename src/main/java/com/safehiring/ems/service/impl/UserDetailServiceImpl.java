@@ -3,10 +3,9 @@ package com.safehiring.ems.service.impl;
 import com.safehiring.ems.jpa.data.Group;
 import com.safehiring.ems.jpa.data.UserEntity;
 import com.safehiring.ems.jpa.repository.UserRepository;
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,7 +16,7 @@ import java.util.Collection;
 import java.util.Set;
 
 @Service
-@Data
+@AllArgsConstructor
 public class UserDetailServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
 

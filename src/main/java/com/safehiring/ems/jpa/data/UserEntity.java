@@ -2,11 +2,8 @@ package com.safehiring.ems.jpa.data;
 
 
 
-import lombok.Getter;
+import lombok.*;
 
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import javax.persistence.CascadeType;
@@ -44,6 +41,9 @@ public class UserEntity {
     private Long mobile;
     @Column(name = "account_verified")
     private boolean accountVerified;
+
+    @Column(name = "payment_verified")
+    private boolean paymentVerified;
     @Column(name = "referred_by")
     private String referredBy;
 

@@ -9,6 +9,7 @@ import javax.xml.bind.DatatypeConverter;
 /**
  * This class defines common routines for generating authentication signatures
  * for Razorpay Webhook requests.
+ * @author Rais Alam
  */
 public class Signature {
     private static final String HMAC_SHA256_ALGORITHM = "HmacSHA256";
@@ -16,7 +17,8 @@ public class Signature {
      * Computes RFC 2104-compliant HMAC signature. * @param data The data to be
      * signed.
      * 
-     * @param key
+     * @param data
+     * @param secret
      *            The signing key.
      * @return The Base64-encoded RFC 2104-compliant HMAC signature.
      * @throws java.security.SignatureException
