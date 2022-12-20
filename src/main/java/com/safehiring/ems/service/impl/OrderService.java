@@ -82,34 +82,10 @@ public class OrderService {
                 errorMsg = "Payment validation failed: Signature doesn't match";
             }
         } catch (Exception e) {
-            log.error("Payment validation failed", e);
+            log.error("Payment validation failed ", e);
             errorMsg = e.getMessage();
         }
         return errorMsg;
     }
 
-    public static void main(String[] args) {
-        try {
-            Group groupUnpaid = new Group();
-            groupUnpaid.setCode(EmsConstants.EMPLOYEE_UNPAID_ROLE);
-
-            Group groupPaid = new Group();
-            groupPaid.setCode(EmsConstants.EMPLOYEE_ROLE);
-
-            Set<Group> userGroup = new HashSet<>();
-            userGroup.add(groupUnpaid);
-
-           userGroup.stream()
-                    .filter(obj->obj.getCode().equalsIgnoreCase(EmsConstants.EMPLOYEE_UNPAID_ROLE))
-                    .findFirst()
-                    .ifPresent(o->o.setCode(EmsConstants.EMPLOYER_ROLE));
-
-            userGroup.stream().forEach(group -> {
-                System.out.println(" grp = "+group.getCode());
-            });
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }
