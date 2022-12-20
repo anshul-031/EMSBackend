@@ -16,6 +16,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -50,7 +51,7 @@ public class ScheduledTasks {
 		List<Order> orders = orderService.getOrders(start, end);
 		orders.forEach(order -> {
 			try {
-				List<Payment>  payments = client.orders.fetchPayments(order.getRazorpayOrderId());
+				List<Payment>  payments = getPayment(order.getRazorpayOrderId());
 				payments.forEach(payment -> {
 					if(!StringUtils.isEmpty(payment.get("status"))) {
 						order.setStatus(payment.get("status"));
@@ -74,4 +75,22 @@ public class ScheduledTasks {
 
 		});
 	}
+
+	private List<Payment> getPayment(String orderId) throws RazorpayException {
+		return client.orders.fetchPayments(orderId);
+	}
+	public List<Payment>  getPaymentsByEmail(String email) {
+		Long userId = userService.getUserByEmail(email).getId();
+		List<Order> orders = orderService.getOrdersByUserId(userId);
+		List<Payment> allPayments = new ArrayList<>();
+		orders.forEach(order -> {
+			try {
+				allPayments.addAll(getPayment(order.getRazorpayOrderId()));
+			} catch (RazorpayException e) {
+				throw new RuntimeException(e);
+			}
+		});
+		return allPayments;
+	}
+
 }
