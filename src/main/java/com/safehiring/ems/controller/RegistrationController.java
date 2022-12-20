@@ -1,11 +1,19 @@
 package com.safehiring.ems.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import com.razorpay.Payment;
 import com.safehiring.ems.constant.EmsConstants;
+import com.safehiring.ems.service.OrderService;
+import com.safehiring.ems.service.impl.ScheduledTasks;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,6 +22,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,6 +42,7 @@ import com.safehiring.ems.service.impl.UserDetailServiceImpl;
 import com.safehiring.ems.util.JwtUtil;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import static java.net.URLDecoder.decode;
 
 @RestController
 @CrossOrigin("*")
@@ -45,6 +55,8 @@ public class RegistrationController {
     private final UserDetailServiceImpl userAuthService;
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
+
+    private final ScheduledTasks scheduledTasks;
 
     @PostMapping("/employer")
     public String registerEmployer(@RequestBody @Valid final EmployerRegistrationRequest registrationRequest) {
@@ -86,11 +98,35 @@ public class RegistrationController {
     @PostMapping("/webhook")
     public String paymentWebHook(@RequestBody final String message) {
         JSONObject jsonObject = new JSONObject(message);
-        System.out.println("Message from razor pay is "+message);
         JSONObject paymentEntity = jsonObject.getJSONObject("payload").getJSONObject("payment").getJSONObject("entity");
         String data = String.format(messageTemplate, jsonObject.get("event"), paymentEntity.get("order_id"),paymentEntity.get("status"), paymentEntity.get("id"), paymentEntity.getInt("amount")/100, paymentEntity.get("email"));
         jwtUtil.sendSlackNotification(data);
         return "Ok";
+
+    }
+
+    @PostMapping("/command")
+    public String slashCommand(@RequestBody final String message) throws UnsupportedEncodingException {
+        Map<String,String> map = Pattern.compile("\\s*&\\s*")
+                .splitAsStream(message.trim())
+                .map(s -> s.split("=", 2))
+                .collect(Collectors.toMap(a -> a[0], a -> a.length>1? a[1]: ""));
+        String commandText = decode(map.get("text"), StandardCharsets.UTF_8.name());
+        if(commandText.contains("|") && commandText.contains("@")) {
+            String email = commandText.split("\\|")[1].replace(">","");
+            String result = "";
+            try{
+                List<Payment> payments = scheduledTasks.getPaymentsByEmail(email);
+                result = "```"+(payments .size() > 0? payments.toString(): "No payments found") +"```";
+            } catch (Exception e){
+                result = e.getMessage();
+            }
+            return result;
+
+        } else {
+            return "Please provide valid email";
+        }
+
 
     }
 

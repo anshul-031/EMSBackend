@@ -13,4 +13,5 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
  
     Order findByRazorpayOrderId(String orderId);
     List<Order> findByCreatedDateBetweenAndIsVerifiedIsFalse(LocalDateTime start, LocalDateTime end);
+    List<Order> findByUserId(Long userId);
 }

@@ -14,4 +14,6 @@ public interface OrderService {
 
     List<Order> getOrders(LocalDateTime start, LocalDateTime end);
     void updateOrder(Order order);
+
+    List<Order> getOrdersByUserId(Long userId);
 }
