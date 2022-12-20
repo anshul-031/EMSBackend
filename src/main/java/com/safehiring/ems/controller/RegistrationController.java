@@ -160,34 +160,4 @@ public class RegistrationController {
     }
 
     private static final String messageTemplate = "{\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"------------------------\\nYou have a new payment\"}},{\"type\":\"section\",\"fields\":[{\"type\":\"mrkdwn\",\"text\":\"*Event:*\\n`%s`\"},{\"type\":\"mrkdwn\",\"text\":\"*OrderId:*\\n`%s`\"},{\"type\":\"mrkdwn\",\"text\":\"*Status:*\\n`%s`\"},{\"type\":\"mrkdwn\",\"text\":\"*PaymeId:*\\n`%s`\"},{\"type\":\"mrkdwn\",\"text\":\"*Amount:*\\n`%s`\"},{\"type\":\"mrkdwn\",\"text\":\"*User:*\\n%s\"}]}]}";
-
-    public static void main(String[] args) {
-        try {
-            String message = "token=HKIwcf8B3yZGfIxtQDtbZz0J&team_id=T04FQS76M4K&team_domain=slack-thv6428&channel_id=C04FM16970E&channel_name=razor-pay&user_id=U04FR04TZPU&user_name=rais7jmi&command=%2Fdetail&text=%3Cmailto%3Arais9jmi%40gmail.com%7Crais9jmi%40gmail.com%3E&api_app_id=A04FM4XE0T0&is_enterprise_install=false&response_url=https%3A%2F%2Fhooks.slack.com%2Fcommands%2FT04FQS76M4K%2F4540307947523%2FLdZ3nzmQh3vArSwFJYtqO2xf&trigger_id=4537476155125.4534891225155.cb77bd6e778ab2d5bed19a898466eccc";
-            Map<String,String> map = Pattern.compile("\\s*&\\s*")
-                    .splitAsStream(message.trim())
-                    .map(s -> s.split("=", 2))
-                    .collect(Collectors.toMap(a -> a[0], a -> a.length>1? a[1]: ""));
-            System.out.println(map);
-            String commandText = decode(map.get("text"), StandardCharsets.UTF_8.name());
-            System.out.println("command text = "+commandText);
-            System.out.println("commandText.contains(\"\\\\|\") "+commandText.contains("|"));
-            if(commandText.contains("|") && commandText.contains("@")) {
-                String email = commandText.split("\\|")[1].replace(">","");
-                System.out.println("email  === "+email);
-            }
-
-
-
-
-            if(map.get("user_name").equalsIgnoreCase("rais7_jmi")){
-
-            }
-
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
 }
