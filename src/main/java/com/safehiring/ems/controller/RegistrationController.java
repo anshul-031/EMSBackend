@@ -107,6 +107,8 @@ public class RegistrationController {
 
     @PostMapping("/command")
     public String slashCommand(@RequestBody final String message) throws UnsupportedEncodingException {
+        log.info("Message from slack is  = ["+message+"]");
+
         Map<String,String> map = Pattern.compile("\\s*&\\s*")
                 .splitAsStream(message.trim())
                 .map(s -> s.split("=", 2))
@@ -114,6 +116,8 @@ public class RegistrationController {
         String commandText = decode(map.get("text"), StandardCharsets.UTF_8.name());
         if(commandText.contains("|") && commandText.contains("@")) {
             String email = commandText.split("\\|")[1].replace(">","");
+           log.info("Email is  = ["+email+"]");
+
             String result = "";
             try{
                 List<Payment> payments = scheduledTasks.getPaymentsByEmail(email);
