@@ -129,5 +129,5 @@ jobs:
           application_name: yourEmployeeCheck
           environment_name: Youremployeecheck-env
           version_label: ${{github.SHA}}
-          region: us-east-1
+          region: ap-south-1
           deployment_package: ems-0.0.1-SNAPSHOT.jar
