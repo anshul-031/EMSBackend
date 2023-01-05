@@ -30,4 +30,8 @@ public interface EmployerAPI {
 	@PutMapping(value = "/employmentoffer", produces = { "application/json" }, consumes = { "application/json" })
 	ResponseEntity<JobOfferResponse> updateEmploymentOffers(@RequestBody @Valid final JobOfferRequest jobOfferRequest);
 
+	@GetMapping(value = "/employmentoffer/{tin}")
+	ResponseEntity<List<JobOfferResponse>> getEmploymentOffersByTin(@PathVariable String tin);
+
+
 }

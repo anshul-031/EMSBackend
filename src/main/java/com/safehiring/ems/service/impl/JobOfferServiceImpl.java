@@ -108,6 +108,11 @@ public class JobOfferServiceImpl implements JobOfferService {
 
     }
 
+    @Override
+    public List<JobOffer> getAllJobsByTinAndEmployerEmail(final String tin, final String employerEmail) throws InvalidJobOfferException {
+        return this.jobOfferRepository.findByTinAndEmployerEmail(tin, employerEmail);
+    }
+
     private List<JobOfferResponse> populateJobOfferResponses(final List<JobOffer> jobOffers) throws InvalidJobOfferException {
         final List<JobOfferResponse> jobOfferResponses = new ArrayList<>(jobOffers.size());
         if (jobOffers.isEmpty()) {
