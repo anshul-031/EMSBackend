@@ -18,6 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 @RestControllerAdvice
 @Slf4j
 public class EmsExceptionHandler extends ResponseEntityExceptionHandler {
+
+	public static final String POST_FIX = " If facing any issue, Please contact at ceo@youremployeecheck.com or whatsapp at +91-8285867446";
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(final MethodArgumentNotValidException ex, final HttpHeaders headers, final HttpStatus status, final WebRequest request) {
 		final List<String> errorList = ex.getBindingResult().getFieldErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.toList());
@@ -27,20 +29,20 @@ public class EmsExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(UserAlreadyExistsException.class)
 	protected ResponseEntity<Object> handleUserAlreadyExists(final UserAlreadyExistsException ex, final WebRequest request) {
 		log.error(ex.getLocalizedMessage());
-		return this.handleExceptionInternal(ex, ex.getLocalizedMessage(), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+		return this.handleExceptionInternal(ex, ex.getLocalizedMessage()+POST_FIX, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
 
 	@ExceptionHandler(InvalidTokenException.class)
 	protected ResponseEntity<Object> handleInvalidTokenExists(final InvalidTokenException ex, final WebRequest request) {
 		log.error(ex.getLocalizedMessage());
-		return this.handleExceptionInternal(ex, ex.getLocalizedMessage(), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+		return this.handleExceptionInternal(ex, ex.getLocalizedMessage()+POST_FIX, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
 
 	@ExceptionHandler(InvalidJobOfferException.class)
 	protected ResponseEntity<Object> handleInvalidTokenExists(final InvalidJobOfferException ex, final WebRequest request) {
 		log.error("message = " + ex.getLocalizedMessage());
 		log.error("code = " + ex.getCode());
-		return this.handleExceptionInternal(ex, ex.getLocalizedMessage(), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+		return this.handleExceptionInternal(ex, ex.getLocalizedMessage()+POST_FIX, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
 
 	@ExceptionHandler(Exception.class)

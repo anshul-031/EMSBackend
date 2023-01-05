@@ -62,7 +62,7 @@ public class RegistrationController {
     public String registerEmployer(@RequestBody @Valid final EmployerRegistrationRequest registrationRequest) {
         registrationRequest.setGroup(EmsConstants.EMPLOYER_UNPAID_ROLE);
         this.userService.register(registrationRequest);
-        return "Employer registration successful";
+        return "Employer registration successful.";
     }
 
     @PostMapping("/employee")
@@ -70,7 +70,7 @@ public class RegistrationController {
         log.info("Inside registration controller");
         registrationRequest.setGroup(EmsConstants.EMPLOYEE_UNPAID_ROLE);
         this.userService.register(registrationRequest);
-        return "Employee registration successful";
+        return "Employee registration successful.";
     }
 
     @PostMapping("/support")
@@ -78,16 +78,16 @@ public class RegistrationController {
         log.info("Inside registration controller");
         registrationRequest.setGroup("SUPPORT");
         this.userService.register(registrationRequest);
-        return "Support registration successful";
+        return "Support registration successful.";
     }
 
     @GetMapping("/verify")
     public String verifyUser(@RequestParam final String token) throws InvalidTokenException {
         if (StringUtils.isEmpty(token)) {
-            throw new InvalidTokenException("Invalid token");
+            throw new InvalidTokenException("Invalid token.");
         }
         this.userService.verifyUser(token);
-        return "Employer verification successful";
+        return "Employer verification successful.";
     }
 
     @GetMapping("/health")
@@ -124,7 +124,7 @@ public class RegistrationController {
             return result;
 
         } else {
-            return "Please provide valid email";
+            return "Please provide valid email.";
         }
 
 
@@ -141,9 +141,9 @@ public class RegistrationController {
              * DisabledException not working. That means If a user is inactive, Still we are not geeting this
              * DisabledException error
              */
-            throw new InvalidUserException("User Inactive, Please verify your email by clicking on the link sent on the email to proceed. If facing any issue, Please contact at ceo@youremployeecheck.com or whatsapp at +91-8285867446");
+            throw new InvalidUserException("Please verify your email by clicking on the link on the email to proceed.");
         } catch (final BadCredentialsException e) {
-            throw new InvalidUserException("Invalid Credentials, If facing any issue, Please contact at ceo@youremployeecheck.com or whatsapp at +91-8285867446");
+            throw new InvalidUserException("Invalid Credentials.");
         }
 
         final UserDetails userDetails = this.userAuthService.loadUserByUsername(jwtRequest.getUsername());

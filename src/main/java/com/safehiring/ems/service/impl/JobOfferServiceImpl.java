@@ -98,7 +98,7 @@ public class JobOfferServiceImpl implements JobOfferService {
 
     @Override
     public void deleteJobOffer(final Long jobId) {
-        this.jobOfferRepository.findById(jobId).orElseThrow(() -> new InvalidJobOfferException(EmsException.INVALID_JOB_OFFER, "Invalid JobId"));
+        this.jobOfferRepository.findById(jobId).orElseThrow(() -> new InvalidJobOfferException(EmsException.INVALID_JOB_OFFER, "Invalid JobId."));
         this.jobOfferRepository.deleteById(jobId);
     }
 
@@ -111,7 +111,7 @@ public class JobOfferServiceImpl implements JobOfferService {
     private List<JobOfferResponse> populateJobOfferResponses(final List<JobOffer> jobOffers) throws InvalidJobOfferException {
         final List<JobOfferResponse> jobOfferResponses = new ArrayList<>(jobOffers.size());
         if (jobOffers.isEmpty()) {
-            throw new InvalidJobOfferException(EmsException.INVALID_JOB_OFFER, "No Jobs found");
+            throw new InvalidJobOfferException(EmsException.INVALID_JOB_OFFER, "No Jobs found.");
         }
         jobOffers.forEach(jobOffer -> jobOfferResponses.add(this.populateJobOfferResponse(jobOffer)));
         return jobOfferResponses;

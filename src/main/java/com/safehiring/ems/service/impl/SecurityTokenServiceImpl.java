@@ -45,7 +45,7 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
 
     @Override
     public SecureToken findByToken(final String token) throws InvalidTokenException {
-        return this.secureTokenRepository.findByToken(token).orElseThrow(() -> new InvalidTokenException(" Invalid token"));
+        return this.secureTokenRepository.findByToken(token).orElseThrow(() -> new InvalidTokenException("Invalid token."));
     }
 
     @Override

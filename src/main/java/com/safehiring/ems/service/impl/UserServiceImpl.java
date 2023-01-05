@@ -41,10 +41,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void register(final EmployerRegistrationRequest registrationRequest) {
         if (!"INDIA".equalsIgnoreCase(registrationRequest.getCountry())) {
-            throw new IllegalArgumentException("Country Not allowed");
+            throw new IllegalArgumentException("Country Not allowed.");
         }
         if (this.checkIfUserExists(registrationRequest.getEmail())) {
-            throw new UserAlreadyExistsException("User already exists for this email");
+            throw new UserAlreadyExistsException("User already exists for this email.");
         }
         final UserEntity userEntity = new UserEntity();
         BeanUtils.copyProperties(registrationRequest, userEntity);
@@ -58,25 +58,25 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUserGroup(final String userEmail, final String code) {
         System.out.println("Updating "+userEmail+" Group = "+code);
-        UserEntity userEntity = userRepository.findByEmail(userEmail).orElseThrow(()-> new UsernameNotFoundException("User does not exists"));
-        final Group group = this.groupRepository.findByCode(code).orElseThrow(() -> new RuntimeException("Group " + code + " doesn't exists"));
+        UserEntity userEntity = userRepository.findByEmail(userEmail).orElseThrow(()-> new UsernameNotFoundException("User does not exists."));
+        final Group group = this.groupRepository.findByCode(code).orElseThrow(() -> new RuntimeException("Group " + code + " doesn't exists."));
         userEntity.getUserGroups().clear();
         userEntity.addUserGroups(group);
     }
 
     @Override
     public UserEntity getUserByEmail(final String userEmail) {
-        return  userRepository.findByEmail(userEmail).orElseThrow(()-> new UsernameNotFoundException("User does not exists"));
+        return  userRepository.findByEmail(userEmail).orElseThrow(()-> new UsernameNotFoundException("User does not exists."));
 
     }
 
     @Override
     public UserEntity getUserById(final Long id) {
-        return userRepository.findById(id).orElseThrow(()-> new UsernameNotFoundException("User does not exists"));
+        return userRepository.findById(id).orElseThrow(()-> new UsernameNotFoundException("User does not exists."));
     }
 
     private void updateUserGroup(final UserEntity entity, final String code) {
-        final Group group = this.groupRepository.findByCode(code).orElseThrow(() -> new RuntimeException("Group " + code + " doesn't exists"));
+        final Group group = this.groupRepository.findByCode(code).orElseThrow(() -> new RuntimeException("Group " + code + " doesn't exists."));
         entity.addUserGroups(group);
 
     }
@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean verifyUser(final String token) throws InvalidTokenException {
         final SecureToken secureToken = this.secureTokenService.findByToken(token);
-        final UserEntity user = this.userRepository.findById(secureToken.getUser().getId()).orElseThrow(() -> new UsernameNotFoundException("User doesn't exists"));
+        final UserEntity user = this.userRepository.findById(secureToken.getUser().getId()).orElseThrow(() -> new UsernameNotFoundException("User doesn't exists."));
         user.setAccountVerified(true);
         this.userRepository.save(user);
 
