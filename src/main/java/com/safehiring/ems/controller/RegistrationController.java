@@ -141,9 +141,9 @@ public class RegistrationController {
              * DisabledException not working. That means If a user is inactive, Still we are not geeting this
              * DisabledException error
              */
-            throw new InvalidUserException("User Inactive");
+            throw new InvalidUserException("User Inactive, Please verify your email by clicking on the link sent on the email to proceed. If facing any issue, Please contact at ceo@youremployeecheck.com or whatsapp at +91-8285867446");
         } catch (final BadCredentialsException e) {
-            throw new InvalidUserException("Invalid Credentials");
+            throw new InvalidUserException("Invalid Credentials, If facing any issue, Please contact at ceo@youremployeecheck.com or whatsapp at +91-8285867446");
         }
 
         final UserDetails userDetails = this.userAuthService.loadUserByUsername(jwtRequest.getUsername());

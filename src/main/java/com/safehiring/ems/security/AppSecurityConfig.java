@@ -56,8 +56,9 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
          http.cors().and().csrf().disable().authorizeRequests().antMatchers("/v1/api/register/**", "/v1/api/register/**").permitAll()
                 .antMatchers(HttpMethod.DELETE, "/v1/api/offer/opt/**").hasAnyAuthority("ADMIN")
-                .antMatchers("/v1/api/employer/**").hasAnyAuthority(EmsConstants.EMPLOYER_ROLE, EmsConstants.ADMIN_ROLE)
-                .antMatchers("/v1/api/employee/**").hasAnyAuthority(EmsConstants.EMPLOYEE_ROLE, EmsConstants.ADMIN_ROLE)
+                .antMatchers("/v1/api/employer/employmentoffer/search").hasAnyAuthority(EmsConstants.EMPLOYER_ROLE, EmsConstants.ADMIN_ROLE)
+                 .antMatchers("/v1/api/employer/employmentoffer/**").hasAnyAuthority(EmsConstants.EMPLOYER_ROLE,EmsConstants.EMPLOYER_UNPAID_ROLE, EmsConstants.ADMIN_ROLE)
+                 .antMatchers("/v1/api/employee/**").hasAnyAuthority(EmsConstants.EMPLOYEE_ROLE, EmsConstants.ADMIN_ROLE)
                 .antMatchers("/v1/api/offer/view/**").hasAnyAuthority(EmsConstants.EMPLOYER_ROLE, EmsConstants.ADMIN_ROLE, EmsConstants.SUPPORT_ROLE)
                 .antMatchers("/v1/api/offer/opt/**").hasAnyAuthority(EmsConstants.EMPLOYER_ROLE, EmsConstants.ADMIN_ROLE)
                  .antMatchers("/v1/api/order/**").hasAnyAuthority(EmsConstants.EMPLOYER_UNPAID_ROLE, EmsConstants.EMPLOYEE_UNPAID_ROLE, EmsConstants.EMPLOYER_ROLE, EmsConstants.EMPLOYEE_ROLE)
