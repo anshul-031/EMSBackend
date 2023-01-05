@@ -82,7 +82,7 @@ public class OrderService {
                 errorMsg = "Payment validation failed: Signature doesn't match";
             }
         } catch (Exception e) {
-            log.error("Payment validation failed ", e);
+            log.error("Payment validation failed.", e);
             errorMsg = e.getMessage();
         }
         return errorMsg;

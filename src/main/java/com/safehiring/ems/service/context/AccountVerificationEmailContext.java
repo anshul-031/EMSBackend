@@ -14,7 +14,7 @@ public class AccountVerificationEmailContext extends AbstractEmailContext {
         UserEntity user = (UserEntity) context;
         put("firstName", user.getOrgName());
         setTemplateLocation("emails/email-verification");
-        setSubject("Welcome to EMS Complete your registration");
+        setSubject("Welcome to YourEmployeeCheck Complete your registration");
         setFrom("no-reply@safehiring.com");
         setTo(user.getEmail());
     }

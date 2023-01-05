@@ -88,11 +88,11 @@ public class OrderServiceImpl implements OrderService {
                 });
 
             } else {
-                errorMsg = "Payment validation failed: Signature doesn't match ";
+                errorMsg = "Payment validation failed: Signature doesn't match. ";
             }
         } catch (Exception e) {
            log.error(e.getLocalizedMessage());
-           throw new EmsException(EmsException.INVALID_PAYMENT, "Payment validation failed");
+           throw new EmsException(EmsException.INVALID_PAYMENT, "Payment validation failed.");
         }
         return errorMsg;
     }
