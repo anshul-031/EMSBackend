@@ -141,7 +141,7 @@ public class RegistrationController {
              * DisabledException not working. That means If a user is inactive, Still we are not geeting this
              * DisabledException error
              */
-            throw new InvalidUserException("User Inactive");
+            throw new InvalidUserException("Please verify your email by clicking on the link on the email");
         } catch (final BadCredentialsException e) {
             throw new InvalidUserException("Invalid Credentials");
         }
