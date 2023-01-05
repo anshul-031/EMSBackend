@@ -70,15 +70,15 @@ public class JwtUtil {
 		try {
 			Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
 		} catch (SignatureException ex) {
-			throw new InvalidTokenException("Invalid JWT signature");
+			throw new InvalidTokenException("Invalid JWT signature, If facing any issue, Please contact at ceo@youremployeecheck.com. or whatsapp at +91-8285867446");
 		} catch (MalformedJwtException ex) {
-			throw new InvalidTokenException("Invalid JWT token");
+			throw new InvalidTokenException("Invalid JWT token, If facing any issue, Please contact at ceo@youremployeecheck.com. or whatsapp at +91-8285867446");
 		} catch (ExpiredJwtException ex) {
-			throw new InvalidTokenException("Expired JWT token");
+			throw new InvalidTokenException("Expired JWT token, If facing any issue, Please contact at ceo@youremployeecheck.com. or whatsapp at +91-8285867446");
 		} catch (UnsupportedJwtException ex) {
-			throw new InvalidTokenException("Unsupported JWT token");
+			throw new InvalidTokenException("Unsupported JWT token, If facing any issue, Please contact at ceo@youremployeecheck.com. or whatsapp at +91-8285867446");
 		} catch (IllegalArgumentException ex) {
-			throw new InvalidTokenException("JWT claims string is empty.");
+			throw new InvalidTokenException("JWT claims string is empty, If facing any issue, Please contact at ceo@youremployeecheck.com. or whatsapp at +91-8285867446");
 		}
 	}
 
